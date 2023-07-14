@@ -10,23 +10,22 @@ import { ContactComponent } from './components/contact/contact.component';
 import { HelpComponent } from './components/help/help.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
+import { CalculatorComponent } from './components/calculator/calculator.component';
+import { BlogComponent } from './components/blog/blog.component';
+import { HomeMainComponent } from './components/home-main/home-main.component';
+import { PrivacyNoticeComponent } from './components/privacy-notice/privacy-notice.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'home', pathMatch:'full'},
-  {path:'home',component:HomeComponent},
-  {path:'about',component:AboutComponent},
-  {path:'contact',component:ContactComponent},
-  {path:'help',component:HelpComponent},
-  {path:'login',component:LoginComponent},
-  {
-    path:'account',
-    component:AccountComponent,
-    children:[
-    {path:'',redirectTo:'profile',pathMatch:'full'},
-    // {path:'main',component:AccountmainComponent},
-    {path:'profile',component:ProfileComponent},
-    {path:'dashboard',component:DashboardComponent},
-    {path:'settings',component:SettingsComponent},
+  {path:'home',
+  component:HomeComponent,
+  children:[
+    {path:'',component:HomeMainComponent},
+    {path:'about',component:AboutComponent},
+    {path:'blog',component:BlogComponent},
+    {path:'calculator',component:CalculatorComponent},
+    {path:'contact',component:ContactComponent},
+    {path:'privacy',component:PrivacyNoticeComponent},
   ]}
 ];
 

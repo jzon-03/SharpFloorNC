@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Hammersmith+One&family=Montserrat:wght@100&display=swap');
+
+
+a{
+    text-decoration: none;
+}
+
+.sf-navbar{
+    padding-left: 50px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.logo-container{
+    font-family: 'Hammersmith One', sans-serif;
+}
+.sf-logo {
+    color: blue;
+}
+
+.nc-logo {
+    color: orangered;
+}
+
+.sf-nav-link{
+    text-align: center;
+}
+
+.sf-nav-item{
+    color: grey;
+    font-weight: lighter;
+}

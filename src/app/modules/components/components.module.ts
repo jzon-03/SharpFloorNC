@@ -14,6 +14,10 @@ import { AccountComponent } from '../../components/account/account.component';
 import { MaterialModule } from '../material/material.module';
 import { LoginComponent } from '../../components/login/login.component';
 import { CategoriesComponent } from '../../components/home/categories/categories.component';
+import { CalculatorComponent } from '../../components/calculator/calculator.component';
+import { BlogComponent } from '../../components/blog/blog.component';
+import { HomeMainComponent } from '../../components/home-main/home-main.component';
+import { PrivacyNoticeComponent } from '../../components/privacy-notice/privacy-notice.component';
 
 
 
@@ -30,7 +34,11 @@ import { CategoriesComponent } from '../../components/home/categories/categories
     ProfileComponent,
     AccountComponent,
     LoginComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    CalculatorComponent,
+    BlogComponent,
+    HomeMainComponent,
+    PrivacyNoticeComponent
   ],
   imports: [
     CommonModule,
