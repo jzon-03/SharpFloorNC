@@ -2,7 +2,8 @@ section{
     display: grid;
     grid-template-columns: 1fr 1fr;
     height: calc(100vh - 70px);
-    padding: 50px;
+    padding: 200px 50px 50px 50px;
+    margin: 100px;
 }
 
 .carousel-container{
@@ -25,7 +26,7 @@ p{
 }
 
 .about-main{
-    max-width: 1200px;
+    max-width: 1600px;
     margin: auto;
 }
 
@@ -36,22 +37,50 @@ p{
 .about-description{
     font-size: x-large;
 }
+.img-container{
+    text-align: center;
+}
+
+.carousel-item{
+    padding: 200px 200px 50px 200px;
+}
+
+.carousel-item > p{
+    color: aliceblue;
+}
+
+.slide{
+    background-image: linear-gradient(rgb(76, 81, 146), rgb(61, 67, 151));
+}
+
+.carousel-title{
+    color:lightcoral;
+    font-weight: 800;
+}
+
+.carousel-body{
+    color: aliceblue;
+}
 
 @media (max-width: 1000px){
     section{
         display: grid;
         grid-template-columns: 1fr;
-        height: calc(100vh - 70px);
-        padding: 50px;
+        min-height: calc(100vh - 70px);
+        padding: 20px;
+        margin: 10px;
         text-align: center;
+    }
+    .carousel-item{
+        padding: 10px;
+    }
+
+    .carousel{
+        padding-bottom: 10px;
     }
 }
 @media (max-width: 600px){
     section{
-        display: grid;
-        grid-template-columns: 1fr;
-        height: calc(100vh - 70px);
-        padding: 50px;
         text-align: center;
     }
 

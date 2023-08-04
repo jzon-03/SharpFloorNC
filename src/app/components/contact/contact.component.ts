@@ -87,7 +87,7 @@ export class EmailForm{
         </thead>
         <tbody>
             <tr>
-                <td>` + fileForm['firstName'] + fileForm['lastName'] + `</td>
+                <td>` + fileForm['firstName'] + ' ' + fileForm['lastName'] + `</td>
                 <td>` + fileForm['businessName'] + `</td>
                 <td>` + fileForm['phone'] + `</td>
                 <td>` + fileForm['email'] + `</td>

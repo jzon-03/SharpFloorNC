@@ -1,11 +1,12 @@
 section{
-    max-width: 1000px;
+    max-width: 1600px;
     margin: auto;
 }
 
 .what-is-mes{
     display: grid;
     grid-template-columns: 1fr 1fr;
+    margin: 10px;
 }
 
 .right-side{
@@ -37,4 +38,23 @@ li{
 
 p{
     line-height: 2.0;
+}
+
+.side{
+    padding: 10px;
+}
+
+@media (max-width: 600px){
+    .what-is-mes{
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .sf-card{
+        padding-top: 20px;
+        padding-bottom: 200px;
+        padding-left: 10px;
+        padding-right: 10px;
+        margin: 20px;
+    }
 }
