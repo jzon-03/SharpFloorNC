@@ -1,102 +1,58 @@
-<!-- <mat-toolbar>
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <div class="logo-container">
-    <span class="sf-logo">SF</span><span class="nc-logo">NC</span>
-  </div>
-  <nav class="sf-navbar">
-    <li class="nav-item"><a class="sf-nav-link nav-link" mat-list-item routerLink="/home">
-        <span class="sf-nav-item">
-          HOME
-        </span>
-      </a>
-    </li>
-    <li class="nav-item"><a class="sf-nav-link nav-link" mat-list-item routerLink="/home/calculator">
-        <span class="sf-nav-item">
-          CALCULATOR
-        </span>
-      </a>
-    </li>
-    <li class="nav-item"><a class="sf-nav-link nav-link" mat-list-item routerLink="/home/blog">
-        <span class="sf-nav-item">
-          BLOG
-        </span>
-      </a>
-    </li>
-    <li class="nav-item"><a class="sf-nav-link nav-link" mat-list-item routerLink="/home/about">
-        <span class="sf-nav-item">
-          ABOUT
-        </span>
-      </a>
-    </li>
-    <li class="nav-item"><a class="sf-nav-link nav-link" mat-list-item routerLink="/home/contact">
-        <span class="sf-nav-item">
-          CONTACT
-        </span>
-      </a>
-    </li>
-  </nav>
-</mat-toolbar> -->
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light sf-bg">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <div>
+      <span class="sf-logo">sf</span><span class="nc-logo">NC</span>
+    </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item"><a class="sf-nav-link nav-link" mat-list-item routerLink="/home">
-          <span class="sf-nav-item">
+        <li class="nav-item">
+          <a class="sf-nav-link nav-link" mat-list-item routerLinkActive="is-active"
+            routerLink="/home" [routerLinkActiveOptions]="{ exact: true}">
             HOME
-          </span>
-        </a>
-      </li>
-      <li class="nav-item"><a class="sf-nav-link nav-link" mat-list-item routerLink="/home/calculator">
-          <span class="sf-nav-item">
+          </a>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="sf-nav-link nav-link" mat-list-item routerLinkActive="is-active"
+            routerLink="/home/calculator">
             CALCULATOR
-          </span>
-        </a>
-      </li>
-      <li class="nav-item"><a class="sf-nav-link nav-link" mat-list-item routerLink="/home/blog">
-          <span class="sf-nav-item">
+          </a>
+        </li> -->
+        <!-- <li class="nav-item">
+          <a class="sf-nav-link nav-link" mat-list-item routerLinkActive="is-active"
+            routerLink="/home/blog">
             BLOG
-          </span>
-        </a>
-      </li>
-      <li class="nav-item"><a class="sf-nav-link nav-link" mat-list-item routerLink="/home/about">
-          <span class="sf-nav-item">
+          </a>
+        </li> -->
+        <li class="nav-item">
+          <a class="sf-nav-link nav-link" mat-list-item routerLinkActive="is-active"
+            routerLink="/home/about">
             ABOUT
-          </span>
-        </a>
-      </li>
-      <li class="nav-item"><a class="sf-nav-link nav-link" mat-list-item routerLink="/home/contact">
-          <span class="sf-nav-item">
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="sf-nav-link nav-link" mat-list-item routerLinkActive="is-active"
+            routerLink="/home/contact">
             CONTACT
-          </span>
-        </a>
-      </li>
+          </a>
+        </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
             aria-expanded="false">
-            Dropdown
+            Customize Your
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li><a class="dropdown-item" routerLink="/home/custommes">Manufacturing Execution System(MES)</a></li>
+            <li><a class="dropdown-item" routerLink="/home/custominventory">Inventory Management</a></li>
           </ul>
         </li>
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+      <a routerLink="/home/contact">
+        <button class="btn btn-outline-success" type="submit">Contact Us</button>
+      </a>
     </div>
   </div>
 </nav>

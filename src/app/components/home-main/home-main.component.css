@@ -1,0 +1,12 @@
+section{
+    max-width: 1000px;
+    margin: 10px auto 10px auto;
+    padding: 30px;
+}
+.home-body{
+    font-size: x-large;
+}
+
+p{
+    line-height: 2.0;
+}

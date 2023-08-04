@@ -2,16 +2,18 @@
 .privacy-container{
     max-width: 1000px;
     margin: auto;
-    display: grid;
-    grid-template-columns: 300px 1fr;
+}
+
+.d-inline{
+    display: inline;
 }
 
 @media(max-width: 600px){
-.left-side{
-    display: none;
-}
+    .left-side{
+        display: none;
+    }
 
-.privacy-container{
-    grid-template-columns: 1fr;
-}
+    .privacy-container{
+        grid-template-columns: 1fr;
+    }
 }

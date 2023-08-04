@@ -1,0 +1,40 @@
+section{
+    max-width: 1000px;
+    margin: auto;
+}
+
+.what-is-mes{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.right-side{
+    height: 60vh;
+    overflow-y: auto;
+}
+
+li{
+    padding: 20px;
+}
+
+.top-page{
+    height: 80vh;
+    padding: 20px;
+}
+
+.bottom-page{
+    padding-top: 200px;
+    padding-bottom: 200px;
+}
+
+.sf-card{
+    padding-top: 100px;
+    padding-bottom: 200px;
+    padding-left: 50px;
+    padding-right: 50px;
+    margin: 20px;
+}
+
+p{
+    line-height: 2.0;
+}

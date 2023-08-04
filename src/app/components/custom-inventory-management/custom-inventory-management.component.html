@@ -1,0 +1,53 @@
+<mat-card class="inv-card">
+    <mat-card-title>
+        <h3 class="display-4 content-title sf-inv">
+            Enhance Manufacturing Efficiency with Custom Inventory Management Software
+        </h3>
+    </mat-card-title>
+    <mat-card-content>
+        <p class="content-body">
+            Welcome to Sharp Floor NC! As a manufacturing company, you are well aware of the complexities involved in
+            managing
+            inventory. Traditional inventory management methods can be time-consuming, error-prone, and hinder overall
+            productivity.
+            However, by incorporating a custom Inventory Management Software tailored to your manufacturing processes,
+            your company
+            can unlock a plethora of benefits that lead to streamlined operations and increased profitability.
+        </p>
+    </mat-card-content>
+</mat-card>
+<mat-card class="inv-card" *ngFor="let l of listOfBenefits">
+    <mat-card-title>
+        <h3 class="content-title sf-inv">
+            {{ l.title }}
+        </h3>
+    </mat-card-title>
+
+    <mat-card-content>
+        <p class="content-body">
+            {{ l.description }}
+        </p>
+    </mat-card-content>
+    <mat-card-actions>
+        <a routerLink="/home/contact">
+            <button mat-raised-button>Find out more</button>
+        </a>
+    </mat-card-actions>
+</mat-card>
+
+<mat-card class="inv-card">
+    <mat-card-content>
+        <p class="content-body">
+            <strong>
+                In conclusion
+            </strong>
+            , investing in a custom inventory management software solution can revolutionize the way your manufacturing
+            company operates. With improved inventory control, production planning, resource allocation, and cost reduction, you
+            can
+            enhance overall efficiency, productivity, and profitability. Trust Sharp Floor NC to develop a tailored solution
+            that aligns with your unique business requirements and sets you on the path to success in the competitive
+            manufacturing
+            landscape. <a routerLink="/home/contact" class="d-inline">Contact us</a> today to get started!
+        </p>
+    </mat-card-content>
+</mat-card>

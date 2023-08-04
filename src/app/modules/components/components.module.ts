@@ -18,6 +18,9 @@ import { CalculatorComponent } from '../../components/calculator/calculator.comp
 import { BlogComponent } from '../../components/blog/blog.component';
 import { HomeMainComponent } from '../../components/home-main/home-main.component';
 import { PrivacyNoticeComponent } from '../../components/privacy-notice/privacy-notice.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CustommesComponent } from '../../components/custommes/custommes.component';
+import { CustomInventoryManagementComponent } from '../../components/custom-inventory-management/custom-inventory-management.component';
 
 
 
@@ -38,12 +41,16 @@ import { PrivacyNoticeComponent } from '../../components/privacy-notice/privacy-
     CalculatorComponent,
     BlogComponent,
     HomeMainComponent,
-    PrivacyNoticeComponent
+    PrivacyNoticeComponent,
+    CustommesComponent,
+    CustomInventoryManagementComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class ComponentsModule { }

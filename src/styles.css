@@ -1,7 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap');
 
 html, body { height: 100%; }
 /* body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.sf-bg{
+    background-color: #fff8f6;
+}
+
+.content-title{
+    color: #4b0000;
+    font-weight: 800;
+}
+
+.content-body{
+    color: #3a3a3a;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: x-large;
+}

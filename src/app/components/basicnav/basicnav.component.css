@@ -22,11 +22,10 @@ a{
     color: orangered;
 }
 
-.sf-nav-link{
-    text-align: center;
+.is-active{
+    border-bottom: 1px solid gray;
 }
 
-.sf-nav-item{
-    color: grey;
-    font-weight: lighter;
+.sf-nav-link:hover{
+    border-bottom: 1px solid gray;
 }
