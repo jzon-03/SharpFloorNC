@@ -77,7 +77,7 @@ export class EmailForm{
     this.body = `
       <table style="border: 1px solid grey;">
         <thead>
-            <tr style="background-color:lightgrey">
+            <tr style="background-color:lightblue">
                 <th>Name</th>
                 <th>Company</th>
                 <th>Phone</th>
