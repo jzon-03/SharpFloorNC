@@ -16,6 +16,7 @@ import { HomeMainComponent } from './components/home-main/home-main.component';
 import { PrivacyNoticeComponent } from './components/privacy-notice/privacy-notice.component';
 import { CustommesComponent } from './components/custommes/custommes.component';
 import { CustomInventoryManagementComponent } from './components/custom-inventory-management/custom-inventory-management.component';
+import { QualityManagementSystemComponent } from './components/quality-management-system/quality-management-system.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'home', pathMatch:'full'},
@@ -26,6 +27,7 @@ const routes: Routes = [
     {path:'about',component:AboutComponent},
     {path:'custommes',component:CustommesComponent},
     {path:'custominventory',component:CustomInventoryManagementComponent},
+    {path:'qms',component:QualityManagementSystemComponent},
     {path:'contact',component:ContactComponent},
     {path:'privacy',component:PrivacyNoticeComponent},
   ]}

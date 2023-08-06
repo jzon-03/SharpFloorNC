@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  domainUrl: "https://localhost:7213/api/email"
+  // domainUrl: "https://emailapi20230803142600.azurewebsites.net/api/email"
 };
 
 /*

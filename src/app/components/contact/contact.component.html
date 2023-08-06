@@ -2,7 +2,6 @@
     <div class="text-center">
         <h3 class="content-title">Contact Us</h3>
         <div>Let's unlock the true potential of your business together!</div>
-        <mat-progress-bar [mode]="selectedMode" value="0"></mat-progress-bar>
     </div>
     <form [formGroup]="fileForm" (ngSubmit)="onSubmit()" class="file-form">
         <mat-form-field appearance="fill">
@@ -36,7 +35,11 @@
             <mat-label>Comments</mat-label>
             <textarea name="comment" matInput formControlName="comments" cols="200"></textarea>
         </mat-form-field>
+        <mat-progress-bar [mode]="selectedMode" value="0"></mat-progress-bar>
         <button #submitButton mat-raised-button type="submit" color="primary" [disabled]="fileForm.invalid">Submit</button>
     </form>
+    <label for="file">Select file to upload. 10Mb limit <i>(Optional)</i></label>
+    <input type="file" name="file" id="file" (change)="onSelectedFile($event)">
+    <mat-error *ngIf="isTooLarge">({{fileSize/1000000 | number:'0.0'}} mb)File too large</mat-error>
 </mat-card>
 

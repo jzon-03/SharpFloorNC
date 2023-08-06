@@ -1,0 +1,49 @@
+section{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 20px;
+}
+
+.top-card{
+    max-width: 1400px;
+    padding: 100px;
+    margin: auto;
+}
+p{
+    line-height: 2.0;
+}
+
+.list-description{
+    padding: 200px 50px 0px 50px;
+    max-width: 1400px;
+    margin: auto;
+}
+
+.benefits{
+    padding: 50px;
+}
+
+@media (max-width: 750px){
+    section{
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .top-card{
+        padding: 20px;
+        margin: auto;
+    }
+
+    .list-description{
+        text-align: center;
+        padding-top: 20px;
+    }
+
+    .benefits{
+        padding: 10px;
+    }
+
+}

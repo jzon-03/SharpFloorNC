@@ -17,6 +17,10 @@ export class ContactComponent implements OnInit {
   determinateMode: ProgressBarMode = "determinate";
   selectedMode = this.determinateMode;
 
+  selectedFile: File | undefined;
+  isTooLarge = false;
+  fileSize = 0;
+
   constructor(
     private _fb: FormBuilder,
     private _crud: MainserviceService,
@@ -43,10 +47,33 @@ export class ContactComponent implements OnInit {
 
   }
 
+  onSelectedFile(event: any){
+    this.isTooLarge = false;
+    var tempFile: File = event.target.files[0];
+    if (tempFile.size > 10000000){
+      this.isTooLarge = true;
+      this.fileSize = tempFile.size;
+      console.log("File size too large.");
+    }else{
+      this.selectedFile = event.target.files[0];
+      this.isTooLarge = false;
+    }
+  }
+
   onSubmit() {
     this.selectedMode = this.queryMode;
+    const formData = new FormData();
+    const emailForm = new EmailForm(this.fileForm.value);
+
+    formData.append('subject', emailForm.subject);
+    formData.append('body', emailForm.body);
+
+    if(this.selectedFile){
+      formData.append('file', this.selectedFile, this.selectedFile.name);
+    }
     this.fileForm.disable();
-    this._crud.sendEmail(new EmailForm(this.fileForm.value)).subscribe({
+
+    this._crud.sendEmail(formData).subscribe({
       next:()=>{
         console.log("Email sent")
         this.fileForm.reset();
@@ -56,8 +83,8 @@ export class ContactComponent implements OnInit {
           duration: 4000
         });
       },
-      error:()=>{
-        console.log("Error");
+      error:(err)=>{
+        console.log("Error ", err);
         this.fileForm.enable();
         this.selectedMode = this.determinateMode;
         this._snackbar.open("ERROR sending message ❌! Please try again later.", "Dismiss", {
@@ -97,6 +124,6 @@ export class EmailForm{
     </table>
     <pre>` + fileForm['comments'] + `</pre>
     `
-    this.subject = fileForm['howCanWeAssistYou'];
+    this.subject = fileForm['howCanWeAssistYou'] + "Contact Us";
   }
 }

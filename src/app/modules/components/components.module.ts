@@ -21,6 +21,7 @@ import { PrivacyNoticeComponent } from '../../components/privacy-notice/privacy-
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CustommesComponent } from '../../components/custommes/custommes.component';
 import { CustomInventoryManagementComponent } from '../../components/custom-inventory-management/custom-inventory-management.component';
+import { QualityManagementSystemComponent } from '../../components/quality-management-system/quality-management-system.component';
 
 
 
@@ -43,7 +44,8 @@ import { CustomInventoryManagementComponent } from '../../components/custom-inve
     HomeMainComponent,
     PrivacyNoticeComponent,
     CustommesComponent,
-    CustomInventoryManagementComponent
+    CustomInventoryManagementComponent,
+    QualityManagementSystemComponent
   ],
   imports: [
     CommonModule,

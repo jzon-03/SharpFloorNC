@@ -1,0 +1,48 @@
+<mat-card class="top-card">
+    <mat-card-title>
+        <h3 class="content-title">
+            **Welcome to Sharp Floor NC!**
+        </h3>
+    </mat-card-title>
+    <mat-card-content>
+        <p class="content-body">
+            At Sharp Floor NC, we understand the unique challenges that manufacturing companies face in maintaining high-quality
+            standards while optimizing their operations. That's why we offer custom Quality Management System (QMS) software
+            tailored specifically for manufacturing companies, designed to streamline and enhance your quality control processes.
+        </p>
+    </mat-card-content>
+</mat-card>
+<h3 class="list-description">
+    Here's how your manufacturing company can benefit from our custom QMS software:
+</h3>
+<section>
+    <mat-card *ngFor="let item of listOfBenefits" class="benefits">
+        <mat-card-title>
+            <h4 class="content-title">
+                <mat-icon> {{ item.icon }} </mat-icon>
+                {{ item.title }}
+            </h4>
+        </mat-card-title>
+        <mat-card-content>
+            <p class="content-body">
+                {{ item.body }}
+            </p>
+        </mat-card-content>
+        <mat-card-actions>
+            <a routerLink="/home/contact" matTooltip="Learn more">
+                <button mat-icon-button>
+                    <mat-icon>double_arrow</mat-icon>
+                </button>
+            </a>
+        </mat-card-actions>
+    </mat-card>
+</section>
+<mat-card>
+    <mat-card-content>
+        <p class="content-body">
+            Experience the power of a tailored Quality Management System for your manufacturing company with Sharp Floor NC.
+            Contact us today to schedule a consultation and learn more about how our QMS software can transform your quality control
+            processes and elevate your business to new heights.
+        </p>
+    </mat-card-content>
+</mat-card>
