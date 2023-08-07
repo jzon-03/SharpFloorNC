@@ -24,7 +24,7 @@ export class ArticlesComponent implements OnInit {
         if (this.selectedArticle){
           resolve(data['a']);
         }else{
-          this.selectedArticle = this.findArticle("The Real Cost of Custom Software Development: Beyond Dollars and Cents");
+          this.selectedArticle = this.findArticle("Embracing Software Customization: The Key to Manufacturing Companies' Success");
         }
       }
     })
