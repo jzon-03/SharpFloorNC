@@ -1,0 +1,32 @@
+<mat-accordion>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            Articles
+        </mat-expansion-panel-header>
+        <ul>
+            <li>
+                <a routerLink="/home/articles" [queryParams]="{'a': 'The Real Cost of Custom Software Development: Beyond Dollars and Cents'}">The Real Cost of Custom Software Development: Beyond Dollars and Cents</a>
+            </li>
+            <li>
+                <a routerLink="/home/articles" [queryParams]="{'a': 'The Advantages of Custom Manufacturing Execution System Software for Manufacturing Companies'}">The Advantages of Custom Manufacturing Execution System Software for Manufacturing Companies</a>
+            </li>
+            <li>
+                <a routerLink="/home/articles" [queryParams]="{'a': 'Embracing Software Customization: The Key to Manufacturing Companies\' Success'}">Embracing Software Customization: The Key to Manufacturing Companies' Success</a>
+            </li>
+        </ul>
+    </mat-expansion-panel>
+</mat-accordion>
+<article *ngIf="selectedArticle as art">
+    <h3> {{ art.title }} </h3>
+    <p> {{ art.introductionBody }} </p>
+    <mat-card *ngFor="let item of art.list;let i = index">
+        <mat-card-title>
+            <h4> <u> {{ i + 1 }}. {{ item.listTitle }} </u></h4>
+        </mat-card-title>
+        <mat-card-content>
+            <p> {{ item.listBody }} </p>
+        </mat-card-content>
+    </mat-card>
+    <h4> {{ art.conclusionTitle }} </h4>
+    <p> {{ art.conclusion }} </p>
+</article>

@@ -24,6 +24,8 @@ import { CustomInventoryManagementComponent } from '../../components/custom-inve
 import { QualityManagementSystemComponent } from '../../components/quality-management-system/quality-management-system.component';
 import { YourVisionComponent } from '../../components/your-vision/your-vision.component';
 import { OvercomingObstaclesComponent } from '../../components/overcoming-obstacles/overcoming-obstacles.component';
+import { AllowCookiesComponent } from '../../components/allow-cookies/allow-cookies.component';
+import { ArticlesComponent } from '../../components/articles/articles.component';
 
 
 
@@ -49,7 +51,9 @@ import { OvercomingObstaclesComponent } from '../../components/overcoming-obstac
     CustomInventoryManagementComponent,
     QualityManagementSystemComponent,
     YourVisionComponent,
-    OvercomingObstaclesComponent
+    OvercomingObstaclesComponent,
+    AllowCookiesComponent,
+    ArticlesComponent
   ],
   imports: [
     CommonModule,

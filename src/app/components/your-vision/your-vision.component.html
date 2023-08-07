@@ -7,31 +7,31 @@
         <div>Your vision, our mission.</div>
     </div>
     <form [formGroup]="fileForm" (ngSubmit)="onSubmit()" class="file-form">
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="outline">
             <mat-label>First Name</mat-label>
             <input type="text" name="firstName" matInput formControlName="firstName">
         </mat-form-field>
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="outline">
             <mat-label>Last Name</mat-label>
             <input type="text" name="lastName" matInput formControlName="lastName">
         </mat-form-field>
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="outline">
             <mat-label>Work Email</mat-label>
             <input type="email" name="email" matInput formControlName="email">
         </mat-form-field>
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="outline">
             <mat-label>Business Name</mat-label>
             <input type="text" name="businessName" matInput formControlName="businessName">
         </mat-form-field>
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="outline">
             <mat-label>Phone</mat-label>
             <input type="text" name="phone" matInput formControlName="phone">
         </mat-form-field>
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="outline">
             <mat-label>Describe your vision</mat-label>
             <input type="text" name="howCanWeAssistYou" matInput formControlName="howCanWeAssistYou">
         </mat-form-field>
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="outline">
             <mat-label>Comments</mat-label>
             <textarea name="comment" matInput formControlName="comments" cols="200"></textarea>
         </mat-form-field>
