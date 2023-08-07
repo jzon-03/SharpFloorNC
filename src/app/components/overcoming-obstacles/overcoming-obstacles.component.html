@@ -1,0 +1,45 @@
+<mat-card class="form-card">
+    <div class="text-center">
+        <h3 class="content-title">
+            <img src="../../../assets/img/icons8-24-hours-64.png" alt="icons8-24-hours-64.png icons8.com">
+            Overcome your obstacles with IoT
+        </h3>
+        <div>No fear, conquer</div>
+    </div>
+    <form [formGroup]="fileForm" (ngSubmit)="onSubmit()" class="file-form">
+        <mat-form-field appearance="outline">
+            <mat-label>First Name</mat-label>
+            <input type="text" name="firstName" matInput formControlName="firstName">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Last Name</mat-label>
+            <input type="text" name="lastName" matInput formControlName="lastName">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Work Email</mat-label>
+            <input type="email" name="email" matInput formControlName="email">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Business Name</mat-label>
+            <input type="text" name="businessName" matInput formControlName="businessName">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Phone</mat-label>
+            <input type="text" name="phone" matInput formControlName="phone">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Describe your obstacles</mat-label>
+            <input type="text" name="howCanWeAssistYou" matInput formControlName="howCanWeAssistYou">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Comments</mat-label>
+            <textarea name="comment" matInput formControlName="comments" cols="200"></textarea>
+        </mat-form-field>
+        <mat-progress-bar [mode]="selectedMode" value="0"></mat-progress-bar>
+        <button #submitButton mat-raised-button type="submit" color="primary" [disabled]="fileForm.invalid">Submit</button>
+    </form>
+
+    <label for="file">Select file to upload. 10Mb limit <i>(Optional)</i></label>
+    <input type="file" name="file" id="file" (change)="onSelectedFile($event)">
+    <mat-error *ngIf="isTooLarge">({{fileSize/1000000 | number:'0.0'}} mb)File too large</mat-error>
+</mat-card>

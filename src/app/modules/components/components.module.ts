@@ -22,6 +22,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CustommesComponent } from '../../components/custommes/custommes.component';
 import { CustomInventoryManagementComponent } from '../../components/custom-inventory-management/custom-inventory-management.component';
 import { QualityManagementSystemComponent } from '../../components/quality-management-system/quality-management-system.component';
+import { YourVisionComponent } from '../../components/your-vision/your-vision.component';
+import { OvercomingObstaclesComponent } from '../../components/overcoming-obstacles/overcoming-obstacles.component';
 
 
 
@@ -45,7 +47,9 @@ import { QualityManagementSystemComponent } from '../../components/quality-manag
     PrivacyNoticeComponent,
     CustommesComponent,
     CustomInventoryManagementComponent,
-    QualityManagementSystemComponent
+    QualityManagementSystemComponent,
+    YourVisionComponent,
+    OvercomingObstaclesComponent
   ],
   imports: [
     CommonModule,

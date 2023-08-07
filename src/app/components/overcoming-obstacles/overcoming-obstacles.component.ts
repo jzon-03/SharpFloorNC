@@ -1,16 +1,17 @@
-import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, ViewChild } from '@angular/core';
+import { EmailForm } from '../contact/contact.component';
 import { MatButton } from '@angular/material/button';
 import { ProgressBarMode } from '@angular/material/progress-bar';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { FormBuilder, Validators } from '@angular/forms';
 import { MainserviceService } from 'src/app/services/mainservice.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-contact',
-  templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.css']
+  selector: 'app-overcoming-obstacles',
+  templateUrl: './overcoming-obstacles.component.html',
+  styleUrls: ['./overcoming-obstacles.component.css']
 })
-export class ContactComponent implements OnInit {
+export class OvercomingObstaclesComponent {
 
   @ViewChild('submitButton', {static: true}) submitButton:MatButton | undefined
   queryMode: ProgressBarMode = "query";
@@ -41,7 +42,7 @@ export class ContactComponent implements OnInit {
     email: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
     howCanWeAssistYou: ['', Validators.required],
     comments: [''],
-    fromPage: [' Contact us']
+    fromPage: [' Obstacles to tackle']
   })
 
   ngOnInit(): void {
@@ -94,37 +95,5 @@ export class ContactComponent implements OnInit {
       }
     })
 
-  }
-}
-
-export class EmailForm{
-  body: string = "";
-  subject: string = "";
-
-  constructor(fileForm: any){
-    this.body = `
-      <table style="border: 1px solid grey;">
-        <thead>
-            <tr style="background-color:lightblue">
-                <th>Name</th>
-                <th>Company</th>
-                <th>Phone</th>
-                <th>Email</th>
-                <th>Assist with</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>` + fileForm['firstName'] + ' ' + fileForm['lastName'] + `</td>
-                <td>` + fileForm['businessName'] + `</td>
-                <td>` + fileForm['phone'] + `</td>
-                <td>` + fileForm['email'] + `</td>
-                <td>` + fileForm['howCanWeAssistYou'] + `</td>
-            </tr>
-        </tbody>
-    </table>
-    <pre>` + fileForm['comments'] + `</pre>
-    `
-    this.subject = fileForm['fromPage'] + '>>' + fileForm['howCanWeAssistYou'];
   }
 }
