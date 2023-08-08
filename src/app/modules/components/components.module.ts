@@ -26,6 +26,7 @@ import { YourVisionComponent } from '../../components/your-vision/your-vision.co
 import { OvercomingObstaclesComponent } from '../../components/overcoming-obstacles/overcoming-obstacles.component';
 import { AllowCookiesComponent } from '../../components/allow-cookies/allow-cookies.component';
 import { ArticlesComponent } from '../../components/articles/articles.component';
+import { PageNotFoundComponent } from '../../components/page-not-found/page-not-found.component';
 
 
 
@@ -53,7 +54,8 @@ import { ArticlesComponent } from '../../components/articles/articles.component'
     YourVisionComponent,
     OvercomingObstaclesComponent,
     AllowCookiesComponent,
-    ArticlesComponent
+    ArticlesComponent,
+    PageNotFoundComponent
   ],
   imports: [
     CommonModule,

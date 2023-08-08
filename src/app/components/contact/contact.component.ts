@@ -16,6 +16,7 @@ export class ContactComponent implements OnInit {
   queryMode: ProgressBarMode = "query";
   determinateMode: ProgressBarMode = "determinate";
   selectedMode = this.determinateMode;
+  disableButton = false;
 
   selectedFile: File | undefined;
   isTooLarge = false;
@@ -63,6 +64,7 @@ export class ContactComponent implements OnInit {
 
   onSubmit() {
     this.selectedMode = this.queryMode;
+    this.disableButton = true;
     const formData = new FormData();
     const emailForm = new EmailForm(this.fileForm.value);
 
@@ -79,6 +81,7 @@ export class ContactComponent implements OnInit {
         console.log("Email sent")
         this.fileForm.reset();
         this.fileForm.enable();
+        this.disableButton = false;
         this.selectedMode = this.determinateMode;
         this._snackbar.open("Message sent ✔!", "Dismiss", {
           duration: 4000
@@ -87,6 +90,7 @@ export class ContactComponent implements OnInit {
       error:(err)=>{
         console.log("Error ", err);
         this.fileForm.enable();
+        this.disableButton = false;
         this.selectedMode = this.determinateMode;
         this._snackbar.open("ERROR sending message ❌! Please try again later.", "Dismiss", {
           duration: 4000

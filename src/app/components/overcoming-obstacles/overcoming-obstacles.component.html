@@ -36,7 +36,7 @@
             <textarea name="comment" matInput formControlName="comments" cols="200"></textarea>
         </mat-form-field>
         <mat-progress-bar [mode]="selectedMode" value="0"></mat-progress-bar>
-        <button #submitButton mat-raised-button type="submit" color="primary" [disabled]="fileForm.invalid">Submit</button>
+        <button #submitButton mat-raised-button type="submit" color="primary" [disabled]="fileForm.invalid || disableButton">Submit</button>
     </form>
 
     <label for="file">Select file to upload. 10Mb limit <i>(Optional)</i></label>

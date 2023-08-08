@@ -18,6 +18,7 @@ import { CustommesComponent } from './components/custommes/custommes.component';
 import { CustomInventoryManagementComponent } from './components/custom-inventory-management/custom-inventory-management.component';
 import { QualityManagementSystemComponent } from './components/quality-management-system/quality-management-system.component';
 import { ArticlesComponent } from './components/articles/articles.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'home', pathMatch:'full'},
@@ -32,7 +33,9 @@ const routes: Routes = [
     {path:'contact',component:ContactComponent},
     {path:'articles',component:ArticlesComponent},
     {path:'privacy',component:PrivacyNoticeComponent},
-  ]}
+  ]
+},
+{path:'**',component: PageNotFoundComponent},
 ];
 
 @NgModule({

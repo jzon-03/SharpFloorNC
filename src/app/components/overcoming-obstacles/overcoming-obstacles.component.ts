@@ -17,6 +17,7 @@ export class OvercomingObstaclesComponent {
   queryMode: ProgressBarMode = "query";
   determinateMode: ProgressBarMode = "determinate";
   selectedMode = this.determinateMode;
+  disableButton = false;
 
   selectedFile: File | undefined;
   isTooLarge = false;
@@ -74,12 +75,14 @@ export class OvercomingObstaclesComponent {
       formData.append('file', this.selectedFile, this.selectedFile.name);
     }
     this.fileForm.disable();
+    this.disableButton = true;
 
     this._crud.sendEmail(formData).subscribe({
       next:()=>{
         console.log("Email sent")
         this.fileForm.reset();
         this.fileForm.enable();
+        this.disableButton = false;
         this.selectedMode = this.determinateMode;
         this._snackbar.open("Message sent ✔!", "Dismiss", {
           duration: 4000
@@ -88,6 +91,7 @@ export class OvercomingObstaclesComponent {
       error:(err)=>{
         console.log("Error ", err);
         this.fileForm.enable();
+        this.disableButton = false;
         this.selectedMode = this.determinateMode;
         this._snackbar.open("ERROR sending message ❌! Please try again later.", "Dismiss", {
           duration: 4000

@@ -9,7 +9,6 @@ import { AllowCookiesComponent } from './components/allow-cookies/allow-cookies.
 })
 export class AppComponent {
   title = 'template';
-  year = new Date().getFullYear()
 
   constructor(
     private _bottomSheet: MatBottomSheet
