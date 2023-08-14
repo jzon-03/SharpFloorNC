@@ -10,3 +10,8 @@ section{
 p{
     line-height: 2.0;
 }
+
+iframe{
+    display: block;
+    margin: auto;
+}

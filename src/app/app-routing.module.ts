@@ -19,6 +19,7 @@ import { CustomInventoryManagementComponent } from './components/custom-inventor
 import { QualityManagementSystemComponent } from './components/quality-management-system/quality-management-system.component';
 import { ArticlesComponent } from './components/articles/articles.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { DemoComponent } from './components/demo/demo.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'home', pathMatch:'full'},
@@ -32,6 +33,7 @@ const routes: Routes = [
     {path:'qms',component:QualityManagementSystemComponent},
     {path:'contact',component:ContactComponent},
     {path:'articles',component:ArticlesComponent},
+    {path:'demo',component:DemoComponent},
     {path:'privacy',component:PrivacyNoticeComponent},
   ]
 },

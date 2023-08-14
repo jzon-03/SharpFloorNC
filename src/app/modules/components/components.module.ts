@@ -27,6 +27,7 @@ import { OvercomingObstaclesComponent } from '../../components/overcoming-obstac
 import { AllowCookiesComponent } from '../../components/allow-cookies/allow-cookies.component';
 import { ArticlesComponent } from '../../components/articles/articles.component';
 import { PageNotFoundComponent } from '../../components/page-not-found/page-not-found.component';
+import { DemoComponent } from 'src/app/components/demo/demo.component';
 
 
 
@@ -55,7 +56,8 @@ import { PageNotFoundComponent } from '../../components/page-not-found/page-not-
     OvercomingObstaclesComponent,
     AllowCookiesComponent,
     ArticlesComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    DemoComponent
   ],
   imports: [
     CommonModule,

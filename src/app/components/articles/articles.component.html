@@ -13,11 +13,19 @@
             <li>
                 <a routerLink="/home/articles" [queryParams]="{'a': 'Embracing Software Customization: The Key to Manufacturing Companies\' Success'}">Embracing Software Customization: The Key to Manufacturing Companies' Success</a>
             </li>
+            <li>
+                <a routerLink="/home/articles" [queryParams]="{'a': 'The Perils of Poor Implementation: Why Manufacturing Companies Fail in Digital Transformation'}">The Perils of Poor Implementation: Why Manufacturing Companies Fail in Digital Transformation</a>
+            </li>
         </ul>
     </mat-expansion-panel>
 </mat-accordion>
 <article *ngIf="selectedArticle as art">
     <h3> {{ art.title }} </h3>
+    <i aria-label="date created">
+        <small>
+            {{ art.dateCreated }}
+        </small>
+    </i>
     <p> {{ art.introductionBody }} </p>
     <mat-card *ngFor="let item of art.list;let i = index">
         <mat-card-title>
