@@ -28,6 +28,7 @@ import { AllowCookiesComponent } from '../../components/allow-cookies/allow-cook
 import { ArticlesComponent } from '../../components/articles/articles.component';
 import { PageNotFoundComponent } from '../../components/page-not-found/page-not-found.component';
 import { DemoComponent } from 'src/app/components/demo/demo.component';
+import { TestComponent } from '../../components/test/test.component';
 
 
 
@@ -57,7 +58,8 @@ import { DemoComponent } from 'src/app/components/demo/demo.component';
     AllowCookiesComponent,
     ArticlesComponent,
     PageNotFoundComponent,
-    DemoComponent
+    DemoComponent,
+    TestComponent
   ],
   imports: [
     CommonModule,

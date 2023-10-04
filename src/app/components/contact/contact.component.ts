@@ -4,6 +4,7 @@ import { MatButton } from '@angular/material/button';
 import { ProgressBarMode } from '@angular/material/progress-bar';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MainserviceService } from 'src/app/services/mainservice.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-contact',
@@ -11,6 +12,8 @@ import { MainserviceService } from 'src/app/services/mainservice.service';
   styleUrls: ['./contact.component.css']
 })
 export class ContactComponent implements OnInit {
+
+  env = environment
 
   @ViewChild('submitButton', {static: true}) submitButton:MatButton | undefined
   queryMode: ProgressBarMode = "query";
@@ -129,6 +132,6 @@ export class EmailForm{
     </table>
     <pre>` + fileForm['comments'] + `</pre>
     `
-    this.subject = fileForm['fromPage'] + '>>' + fileForm['howCanWeAssistYou'];
+    this.subject = 'Contact us>>' + fileForm['howCanWeAssistYou'];
   }
 }
