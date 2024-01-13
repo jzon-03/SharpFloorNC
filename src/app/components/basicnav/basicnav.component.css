@@ -28,4 +28,5 @@ a{
 
 .sf-nav-link:hover{
     border-bottom: 1px solid gray;
+    background-color: var(--melon);
 }

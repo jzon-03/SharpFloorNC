@@ -1,0 +1,15 @@
+section{
+    max-width: 800px;
+    margin: auto;
+    min-height: 70vh;
+    background-image: url('../../../../assets/img/boder-corner-battleship-gray.png');
+    background-position: bottom right;
+    background-size: cover;
+    padding: 15px;
+}
+
+img{
+    width: 100%;
+    min-height: 300px;
+    object-fit: cover;
+}

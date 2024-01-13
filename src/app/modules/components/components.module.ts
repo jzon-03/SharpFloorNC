@@ -16,7 +16,7 @@ import { LoginComponent } from '../../components/login/login.component';
 import { CategoriesComponent } from '../../components/home/categories/categories.component';
 import { CalculatorComponent } from '../../components/calculator/calculator.component';
 import { BlogComponent } from '../../components/blog/blog.component';
-import { HomeMainComponent } from '../../components/home-main/home-main.component';
+import { HomeMainComponent } from '../../components/home/home-main/home-main.component';
 import { PrivacyNoticeComponent } from '../../components/privacy-notice/privacy-notice.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CustommesComponent } from '../../components/custommes/custommes.component';
@@ -29,6 +29,11 @@ import { ArticlesComponent } from '../../components/articles/articles.component'
 import { PageNotFoundComponent } from '../../components/page-not-found/page-not-found.component';
 import { DemoComponent } from 'src/app/components/demo/demo.component';
 import { TestComponent } from '../../components/test/test.component';
+import { HomeSection1Component } from '../../components/home/home-section1/home-section1.component';
+import { AboutSection1Component } from '../../components/about/about-section1/about-section1.component';
+import { AboutSection2Component } from '../../components/about/about-section2/about-section2.component';
+import { AboutSection3Component } from '../../components/about/about-section3/about-section3.component';
+import { HomeSection2Component } from '../../components/home/home-section2/home-section2.component';
 
 
 
@@ -59,7 +64,12 @@ import { TestComponent } from '../../components/test/test.component';
     ArticlesComponent,
     PageNotFoundComponent,
     DemoComponent,
-    TestComponent
+    TestComponent,
+    HomeSection1Component,
+    AboutSection1Component,
+    AboutSection2Component,
+    AboutSection3Component,
+    HomeSection2Component
   ],
   imports: [
     CommonModule,

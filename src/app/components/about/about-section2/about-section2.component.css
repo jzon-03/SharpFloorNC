@@ -1,0 +1,27 @@
+section{
+    position: relative;
+    max-width: 800px;
+    margin: auto;
+    min-height: 80vh;
+    padding: 15px;
+}
+
+img{
+    position: absolute;
+    top: 0;
+    left: 0 ;
+    width: 100%;
+    opacity: .2;
+    object-fit: cover;
+    object-position: top left;
+    height: 80vh;
+}
+
+.contact-us{
+    position: absolute;
+    bottom: 15px;
+}
+
+.carousel{
+    height: 300px;
+}

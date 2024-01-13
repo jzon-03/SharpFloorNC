@@ -1,0 +1,14 @@
+section{
+    max-width: 800px;
+    margin: auto;
+    min-height: 70vh;
+    background-image: url('../../../../assets/img/Gear_isabelline.png');
+    background-position: top left;
+    background-size: cover;
+}
+
+img{
+    min-height: 300px;
+    object-fit: cover;
+    object-position: right;
+}

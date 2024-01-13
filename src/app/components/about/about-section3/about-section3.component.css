@@ -1,0 +1,45 @@
+section{
+    max-width: 1000px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 15px;
+    gap: 10px;
+}
+
+.card-container{
+    position: relative;
+    padding: 15px;
+}
+
+.banner-container{
+    display: grid;
+    grid-template-columns: 100px 1fr;
+}
+
+.banner{
+    background-image: url('../../../../assets/img/squigly_repeating.png');
+    background-repeat: repeat;
+    background-size: 30%;
+    background-color: rgba(255, 228, 196, 0.493);
+}
+
+.paragraph{
+    margin-bottom: 50px;
+}
+
+.contact-us-button{
+    position: absolute;
+    bottom: 15px;
+}
+
+@media(max-width:700px){
+    section{
+        grid-template-columns: 1fr;
+    }
+
+    .banner-container{
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+}

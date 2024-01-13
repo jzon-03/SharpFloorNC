@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,200;0,800;1,400&family=Calligraffitti&family=Lemon&family=Miniver&family=Montserrat:wght@200;400;700;800&family=Roboto:wght@100;300;400;700&family=Twinkle+Star&family=WindSong&display=swap');
+@import url('assets/css/coolors.css');
 
 html, body { height: 100%; }
 /* body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */
@@ -7,8 +8,72 @@ html, body { height: 100%; }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-.sf-bg{
-    background-color: #fff8f6;
+.bitter{font-family: 'Bitter', serif;}
+.calligraffitti{font-family: 'Calligraffitti', cursive;}
+.lemon{font-family: 'Lemon', serif;}
+.miniver{font-family: 'Miniver', cursive;}
+.montserrat{font-family: 'Montserrat', sans-serif;}
+.roboto{font-family: 'Roboto', sans-serif;}
+.twinkle-star{font-family: 'Twinkle Star', cursive;}
+.windsong{font-family: 'WindSong', cursive;}
+
+.sf-taupe-bg{    background-color: var(--taupe);
+}
+
+.sf-battleship-gray-bg{
+    background-color: var(--battleship-gray);
+}
+
+.sf-silver-bg{
+    background-color: var(--silver);
+}
+
+.sf-isabelline-bg{
+    background-color: var(--isabelline);
+}
+
+.sf-melon-bg{
+    background-color: var(--melon);
+}
+
+.sf-taupe-color{
+    color: var(--taupe);
+}
+
+.sf-battleship-gray-color{
+    color: var(--battleship-gray);
+}
+
+.sf-silver-color{
+    color: var(--silver);
+}
+
+.sf-isabelline-color{
+    color: var(--isabelline);
+}
+
+.sf-melon-color{
+    color: var(--melon);
+}
+
+.f-weight-100{
+    font-weight:100;
+}
+
+.f-weight-200{
+    font-weight:200;
+}
+
+.f-weight-400{
+    font-weight: 400;
+}
+
+.f-weight-700{
+    font-weight: 700;
+}
+
+.f-weight-800{
+    font-weight: 800;
 }
 
 .content-title{
@@ -21,12 +86,17 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     font-family: 'Roboto Condensed', sans-serif;
     font-size: x-large;
 }
-
-.sf-bg{
-    background-image: linear-gradient(rgb(238, 241, 250),rgb(221, 228, 252));
-}
 .sf-sticky{
     position: sticky;
     top: 0;
     z-index: 100;
 }
+
+.dropdown:hover>.dropdown-menu {
+    display: block;
+  }
+
+  .dropdown>.dropdown-toggle:active {
+    /*Without this, clicking will make it sticky*/
+    pointer-events: none;
+  }

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light sf-bg">
+<nav class="navbar navbar-expand-lg navbar-light sf-isabelline-bg">
   <div class="container-fluid">
     <div>
       <!-- <span class="sf-logo">sf</span><span class="nc-logo">NC</span> -->
@@ -11,25 +11,25 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="sf-nav-link nav-link" mat-list-item routerLinkActive="is-active"
+          <a class="sf-nav-link nav-link montserrat f-weight-400" mat-list-item routerLinkActive="is-active sf-melon-bg"
             routerLink="/home" [routerLinkActiveOptions]="{ exact: true}">
             HOME
           </a>
         </li>
         <li class="nav-item">
-          <a class="sf-nav-link nav-link" mat-list-item routerLinkActive="is-active"
+          <a class="sf-nav-link nav-link montserrat f-weight-400" mat-list-item routerLinkActive="is-active sf-melon-bg"
             routerLink="/home/about">
             ABOUT
           </a>
         </li>
         <li class="nav-item">
-          <a class="sf-nav-link nav-link" mat-list-item routerLinkActive="is-active"
+          <a class="sf-nav-link nav-link montserrat f-weight-400" mat-list-item routerLinkActive="is-active sf-melon-bg"
             routerLink="/home/contact">
             CONTACT
           </a>
         </li>
         <li class="nav-item">
-          <a class="sf-nav-link nav-link" mat-list-item routerLinkActive="is-active"
+          <a class="sf-nav-link nav-link montserrat f-weight-400" mat-list-item routerLinkActive="is-active sf-melon-bg"
             routerLink="/home/articles">
             ARTICLES
           </a>
@@ -41,8 +41,8 @@
           </a>
         </li> -->
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-            aria-expanded="false">
+          <a class="nav-link dropdown-toggle montserrat f-weight-400" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false" routerLink="/home/custommes" routerLinkActive="is-active sf-melon-bg">
             Customize Your
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -53,7 +53,7 @@
         </li>
       </ul>
       <a routerLink="/home/contact">
-        <button class="btn btn-outline-success" type="submit">Contact Us</button>
+        <button mat-raised-button type="submit">Contact Us</button>
       </a>
     </div>
   </div>

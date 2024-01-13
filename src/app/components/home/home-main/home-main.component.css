@@ -1,0 +1,25 @@
+section{
+    max-width: 1000px;
+    margin: 10px auto 10px auto;
+    padding: 30px;
+}
+
+p{
+    line-height: 1;
+    font-size: smaller;
+}
+
+iframe{
+    display: block;
+    margin: auto;
+}
+
+.image{
+    min-height: 50vh;
+    object-fit: cover;
+}
+
+.welcome{
+    box-shadow: 5px 5px grey;
+    border-radius: 15px;
+}

@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from './components/about/about.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { HomeComponent } from './components/home/home.component';
-import { HomeMainComponent } from './components/home-main/home-main.component';
+import { HomeMainComponent } from './components/home/home-main/home-main.component';
 import { PrivacyNoticeComponent } from './components/privacy-notice/privacy-notice.component';
 import { CustommesComponent } from './components/custommes/custommes.component';
 import { CustomInventoryManagementComponent } from './components/custom-inventory-management/custom-inventory-management.component';
