@@ -15,7 +15,6 @@ export class ContactComponent implements OnInit {
 
   env = environment
 
-  @ViewChild('submitButton', {static: true}) submitButton:MatButton | undefined
   queryMode: ProgressBarMode = "query";
   determinateMode: ProgressBarMode = "determinate";
   selectedMode = this.determinateMode;

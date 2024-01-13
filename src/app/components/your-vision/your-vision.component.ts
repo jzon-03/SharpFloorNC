@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatButton } from '@angular/material/button';
 import { ProgressBarMode } from '@angular/material/progress-bar';
@@ -11,9 +11,8 @@ import { EmailForm } from '../contact/contact.component';
   templateUrl: './your-vision.component.html',
   styleUrls: ['./your-vision.component.css']
 })
-export class YourVisionComponent {
+export class YourVisionComponent implements OnInit {
 
-  @ViewChild('submitButton', {static: true}) submitButton:MatButton | undefined
   queryMode: ProgressBarMode = "query";
   determinateMode: ProgressBarMode = "determinate";
   selectedMode = this.determinateMode;

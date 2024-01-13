@@ -4,8 +4,7 @@
 
 export const environment = {
   production: false,
-  domainUrl: "https://localhost:7213/api/email",
-  phpEmailForm: "https://sharpfloornc.com/sendmail.php"
+  domainUrl: "https://sharpfloornc.com/PHP/"
   // domainUrl: "https://emailapi20230803142600.azurewebsites.net/api/email"
 };
 

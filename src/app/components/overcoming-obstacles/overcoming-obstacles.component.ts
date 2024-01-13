@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { EmailForm } from '../contact/contact.component';
 import { MatButton } from '@angular/material/button';
 import { ProgressBarMode } from '@angular/material/progress-bar';
@@ -11,9 +11,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './overcoming-obstacles.component.html',
   styleUrls: ['./overcoming-obstacles.component.css']
 })
-export class OvercomingObstaclesComponent {
+export class OvercomingObstaclesComponent implements OnInit {
 
-  @ViewChild('submitButton', {static: true}) submitButton:MatButton | undefined
   queryMode: ProgressBarMode = "query";
   determinateMode: ProgressBarMode = "determinate";
   selectedMode = this.determinateMode;
@@ -43,7 +42,7 @@ export class OvercomingObstaclesComponent {
     email: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
     howCanWeAssistYou: ['', Validators.required],
     comments: [''],
-    fromPage: [' Obstacles to tackle']
+    fromPage: [' Overcome your Obstacles']
   })
 
   ngOnInit(): void {

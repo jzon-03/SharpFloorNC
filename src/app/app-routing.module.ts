@@ -10,8 +10,6 @@ import { CustomInventoryManagementComponent } from './components/custom-inventor
 import { QualityManagementSystemComponent } from './components/quality-management-system/quality-management-system.component';
 import { ArticlesComponent } from './components/articles/articles.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import { DemoComponent } from './components/demo/demo.component';
-import { TestComponent } from './components/test/test.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'home', pathMatch:'full'},
@@ -19,17 +17,16 @@ const routes: Routes = [
   component:HomeComponent,
   children:[
     {path:'',component:HomeMainComponent},
+    {path:'contact', redirectTo:'contactus', pathMatch:'prefix'},
     {path:'about',component:AboutComponent},
     {path:'custommes',component:CustommesComponent},
     {path:'custominventory',component:CustomInventoryManagementComponent},
     {path:'qms',component:QualityManagementSystemComponent},
-    {path:'contact',component:ContactComponent},
+    {path:'contactus',component:ContactComponent},
     {path:'articles',component:ArticlesComponent},
-    // {path:'demo',component:DemoComponent},
     {path:'privacy',component:PrivacyNoticeComponent},
   ]
 },
-{path:'test', component:TestComponent},
 // {path:'**',component: PageNotFoundComponent},
 ];
 

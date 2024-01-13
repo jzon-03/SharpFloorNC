@@ -1,7 +1,7 @@
 section{
     max-width: 800px;
     margin: auto;
-    min-height: 70vh;
+    /* min-height: 90vh; */
     background-image: url('../../../../assets/img/boder-corner-battleship-gray.png');
     background-position: bottom right;
     background-size: cover;
