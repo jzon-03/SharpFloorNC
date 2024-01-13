@@ -117,6 +117,7 @@ export class EmailForm{
                 <th>Phone</th>
                 <th>Email</th>
                 <th>Assist with</th>
+                <th>Reference</th>
             </tr>
         </thead>
         <tbody>
@@ -126,6 +127,7 @@ export class EmailForm{
                 <td>` + fileForm['phone'] + `</td>
                 <td>` + fileForm['email'] + `</td>
                 <td>` + fileForm['howCanWeAssistYou'] + `</td>
+                <td>` + fileForm['fromPage'] + `</td>
             </tr>
         </tbody>
     </table>
