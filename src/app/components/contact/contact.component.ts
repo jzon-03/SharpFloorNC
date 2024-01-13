@@ -94,7 +94,7 @@ export class ContactComponent implements OnInit {
         this.fileForm.enable();
         this.disableButton = false;
         this.selectedMode = this.determinateMode;
-        this._snackbar.open("ERROR sending message ❌! Please try again later.", "Dismiss", {
+        this._snackbar.open("ERROR sending message" + err.message, "Dismiss", {
           duration: 4000
         });
       }

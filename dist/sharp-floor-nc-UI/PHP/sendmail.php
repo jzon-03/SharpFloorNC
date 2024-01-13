@@ -9,8 +9,10 @@ if($_POST['body']){
 
     // Send the email
     if(!$mainSuccess){
+        header('HTTP/1.1 500 Internal Server Error');
         echo $mainSuccess;
     }else{
+        header('HTTP/1.1 200 OK');
         echo $mainSuccess;
     }
 }
