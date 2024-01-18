@@ -14,6 +14,6 @@ export class MainserviceService {
 
   sendEmail(body: any){
     // return this._http.post("https://localhost:7213/api/email", body);
-    return this._http.post(this.env.domainUrl + "sendmail.php", body);
+    return this._http.post(this.env.domainUrl + "send_email.php", body);
   }
 }

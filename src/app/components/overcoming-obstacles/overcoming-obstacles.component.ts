@@ -81,6 +81,7 @@ export class OvercomingObstaclesComponent implements OnInit {
         console.log("Email sent")
         this.fileForm.reset();
         this.fileForm.enable();
+        this.fileForm.controls['fromPage'].setValue(" Overcome your Obstacle");
         this.disableButton = false;
         this.selectedMode = this.determinateMode;
         this._snackbar.open("Message sent ✔!", "Dismiss", {

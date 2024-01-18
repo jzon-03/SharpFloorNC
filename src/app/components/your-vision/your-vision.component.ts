@@ -81,6 +81,7 @@ export class YourVisionComponent implements OnInit {
         console.log("Email sent")
         this.fileForm.reset();
         this.fileForm.enable();
+        this.fileForm.controls['fromPage'].setValue(" Your vision");
         this.disableButton = false;
         this.selectedMode = this.determinateMode;
         this._snackbar.open("Message sent ✔!", "Dismiss", {
