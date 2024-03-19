@@ -1,7 +1,18 @@
-RewriteEngine on
-RewriteCond %{REQUEST_FILENAME} -s [OR]
-RewriteCond %{REQUEST_FILENAME} -l [OR]
-RewriteCond %{REQUEST_FILENAME} -d
-RewriteRule ^.*$ - [NC,L]
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
 
-RewriteRule ^(.*) ./index.html [NC,L]
+    # Serve index.html for all requests
+    RewriteRule ^ index.html [L]
+</IfModule>
+
+# Allow files and directories to be served
+<IfModule mod_headers.c>
+    # Cache static assets for one year
+    <FilesMatch "\.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|otf|eot)$">
+        Header set Cache-Control "max-age=31536000, public"
+    </FilesMatch>
+</IfModule>
+
+# Disable directory browsing
+Options -Indexes
