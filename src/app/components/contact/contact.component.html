@@ -1,58 +1,95 @@
-<mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
-    <mat-tab label="Contact Us">
-        <mat-card class="form-card">
-            <div class="text-center">
-                <h3 class="content-title">
-                    <img src="../../../assets/img/icons8-megaphone-64.png" alt="icons8-megaphone-64.png icons8.com">
-                    Contact Us
-                </h3>
-                <div>Let's unlock the true potential of your business together!</div>
+<div class="contact-container">
+    <div class="contact-header">
+        <h1 class="montserrat page-title">Get In Touch</h1>
+        <p class="page-subtitle">Let's unlock the true potential of your business together!</p>
+    </div>
+
+    <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="center" class="modern-tabs">
+        <mat-tab label="Contact Us">
+            <mat-card class="form-card modern-card">
+                <div class="card-header">
+                    <div class="header-icon-wrapper">
+                        <img src="../../../assets/img/icons8-megaphone-64.png" alt="Contact icon" class="header-icon">
+                    </div>
+                    <h2 class="content-title">Send Us a Message</h2>
+                    <p class="card-description">We're here to help you transform your manufacturing operations</p>
+                </div>
+                
+                <form [formGroup]="fileForm" (ngSubmit)="onSubmit()" class="file-form modern-form">
+                    <div class="form-row">
+                        <mat-form-field appearance="outline" class="form-field">
+                            <mat-label>First Name</mat-label>
+                            <input type="text" name="firstName" matInput formControlName="firstName">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" class="form-field">
+                            <mat-label>Last Name</mat-label>
+                            <input type="text" name="lastName" matInput formControlName="lastName">
+                        </mat-form-field>
+                    </div>
+                    
+                    <mat-form-field appearance="outline" class="form-field">
+                        <mat-label>Work Email</mat-label>
+                        <input type="email" name="email" matInput formControlName="email">
+                        <mat-icon matPrefix>email</mat-icon>
+                    </mat-form-field>
+                    
+                    <div class="form-row">
+                        <mat-form-field appearance="outline" class="form-field">
+                            <mat-label>Business Name</mat-label>
+                            <input type="text" name="businessName" matInput formControlName="businessName">
+                            <mat-icon matPrefix>business</mat-icon>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" class="form-field">
+                            <mat-label>Phone</mat-label>
+                            <input type="text" name="phone" matInput formControlName="phone">
+                            <mat-icon matPrefix>phone</mat-icon>
+                        </mat-form-field>
+                    </div>
+                    
+                    <mat-form-field appearance="outline" class="form-field">
+                        <mat-label>How Can We Assist You?</mat-label>
+                        <input type="text" name="howCanWeAssistYou" matInput formControlName="howCanWeAssistYou" [matAutocomplete]="auto">
+                        <mat-icon matPrefix>help_outline</mat-icon>
+                        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                            <mat-option *ngFor="let option of assistList" [value]="option"> {{ option }} </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                    
+                    <mat-form-field appearance="outline" class="form-field">
+                        <mat-label>Comments</mat-label>
+                        <textarea name="comment" matInput formControlName="comments" rows="5"></textarea>
+                    </mat-form-field>
+                    
+                    <div class="file-upload-section">
+                        <label for="file" class="file-label">
+                            <mat-icon>attach_file</mat-icon>
+                            Select file to upload (10Mb limit) <i>(Optional)</i>
+                        </label>
+                        <input type="file" name="file" id="file" (change)="onSelectedFile($event)" [disabled]="disableButton" class="file-input">
+                        <mat-error *ngIf="isTooLarge" class="file-error">({{fileSize/1000000 | number:'0.0'}} mb) File too large</mat-error>
+                    </div>
+                    
+                    <mat-progress-bar [mode]="selectedMode" value="0" class="progress-bar"></mat-progress-bar>
+                    
+                    <button #submitButton mat-raised-button type="submit" color="primary" [disabled]="fileForm.invalid || disableButton" class="submit-button">
+                        <span>Submit</span>
+                        <mat-icon>send</mat-icon>
+                    </button>
+                </form>
+            </mat-card>
+        </mat-tab>
+        
+        <mat-tab label="Your Vision">
+            <div class="tab-content">
+                <app-your-vision></app-your-vision>
             </div>
-            <form [formGroup]="fileForm" (ngSubmit)="onSubmit()" class="file-form">
-                <mat-form-field appearance="outline">
-                    <mat-label>First Name</mat-label>
-                    <input type="text" name="firstName" matInput formControlName="firstName">
-                </mat-form-field>
-                <mat-form-field appearance="outline">
-                    <mat-label>Last Name</mat-label>
-                    <input type="text" name="lastName" matInput formControlName="lastName">
-                </mat-form-field>
-                <mat-form-field appearance="outline">
-                    <mat-label>Work Email</mat-label>
-                    <input type="email" name="email" matInput formControlName="email">
-                </mat-form-field>
-                <mat-form-field appearance="outline">
-                    <mat-label>Business Name</mat-label>
-                    <input type="text" name="businessName" matInput formControlName="businessName">
-                </mat-form-field>
-                <mat-form-field appearance="outline">
-                    <mat-label>Phone</mat-label>
-                    <input type="text" name="phone" matInput formControlName="phone">
-                </mat-form-field>
-                <mat-form-field appearance="outline">
-                    <mat-label>How Can We Assist You?</mat-label>
-                    <input type="text" name="howCanWeAssistYou" matInput formControlName="howCanWeAssistYou" [matAutocomplete]="auto">
-                    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-                        <mat-option *ngFor="let option of assistList" [value]="option"> {{ option }} </mat-option>
-                    </mat-autocomplete>
-                </mat-form-field>
-                <mat-form-field appearance="outline">
-                    <mat-label>Comments</mat-label>
-                    <textarea name="comment" matInput formControlName="comments" cols="200"></textarea>
-                </mat-form-field>
-                <mat-progress-bar [mode]="selectedMode" value="0"></mat-progress-bar>
-                <button #submitButton mat-raised-button type="submit" color="primary" [disabled]="fileForm.invalid || disableButton">Submit</button>
-            </form>
-            <label for="file">Select file to upload. 10Mb limit <i>(Optional)</i></label>
-            <input type="file" name="file" id="file" (change)="onSelectedFile($event)" [disabled]="disableButton">
-            <mat-error *ngIf="isTooLarge">({{fileSize/1000000 | number:'0.0'}} mb)File too large</mat-error>
-        </mat-card>
-    </mat-tab>
-    <mat-tab label="Your Vision">
-        <app-your-vision></app-your-vision>
-    </mat-tab>
-    <mat-tab label="Overcome your obstacles">
-        <app-overcoming-obstacles></app-overcoming-obstacles>
-    </mat-tab>
-</mat-tab-group>
+        </mat-tab>
+        
+        <mat-tab label="Overcome Your Obstacles">
+            <div class="tab-content">
+                <app-overcoming-obstacles></app-overcoming-obstacles>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+</div>
 

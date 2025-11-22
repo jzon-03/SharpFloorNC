@@ -5,7 +5,6 @@ $headers[] = 'Content-type: text/html; charset=iso-8859-1';
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     $mainSuccess = mail("jguevarra@sharpfloornc.com",$_POST['subject'], $_POST['body'], implode("\r\n", $headers));
-    $success = mail("6077686410@mms.att.net",'', 'Customer sent you a message');
 
     // Send the email
     if(!$mainSuccess){

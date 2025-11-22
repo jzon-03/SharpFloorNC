@@ -1,40 +1,70 @@
-<mat-accordion>
-    <mat-expansion-panel>
-        <mat-expansion-panel-header>
-            Articles
-        </mat-expansion-panel-header>
-        <ul>
-            <li>
-                <a routerLink="/home/articles" [queryParams]="{'a': 'The Real Cost of Custom Software Development: Beyond Dollars and Cents'}">The Real Cost of Custom Software Development: Beyond Dollars and Cents</a>
-            </li>
-            <li>
-                <a routerLink="/home/articles" [queryParams]="{'a': 'The Advantages of Custom Manufacturing Execution System Software for Manufacturing Companies'}">The Advantages of Custom Manufacturing Execution System Software for Manufacturing Companies</a>
-            </li>
-            <li>
-                <a routerLink="/home/articles" [queryParams]="{'a': 'Embracing Software Customization: The Key to Manufacturing Companies\' Success'}">Embracing Software Customization: The Key to Manufacturing Companies' Success</a>
-            </li>
-            <li>
-                <a routerLink="/home/articles" [queryParams]="{'a': 'The Perils of Poor Implementation: Why Manufacturing Companies Fail in Digital Transformation'}">The Perils of Poor Implementation: Why Manufacturing Companies Fail in Digital Transformation</a>
-            </li>
-        </ul>
-    </mat-expansion-panel>
-</mat-accordion>
-<article *ngIf="selectedArticle as art">
-    <h3> {{ art.title }} </h3>
-    <i aria-label="date created">
-        <small>
-            {{ art.dateCreated }}
-        </small>
-    </i>
-    <p> {{ art.introductionBody }} </p>
-    <mat-card *ngFor="let item of art.list;let i = index">
-        <mat-card-title>
-            <h4> <u> {{ i + 1 }}. {{ item.listTitle }} </u></h4>
-        </mat-card-title>
-        <mat-card-content>
-            <p> {{ item.listBody }} </p>
-        </mat-card-content>
-    </mat-card>
-    <h4> {{ art.conclusionTitle }} </h4>
-    <p> {{ art.conclusion }} </p>
-</article>
+<div class="articles-container">
+    <div class="articles-header animate-fade-in">
+        <h1 class="page-title">Knowledge Center</h1>
+        <p class="page-subtitle">Insights and expertise on manufacturing software solutions</p>
+    </div>
+
+    <mat-accordion class="articles-nav">
+        <mat-expansion-panel class="nav-panel">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <mat-icon>article</mat-icon>
+                    <span>Browse Articles</span>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <ul class="articles-list">
+                <li *ngFor="let title of articleTitles" class="article-list-item">
+                    <a routerLink="/home/articles" [queryParams]="{'a': title}" class="article-link">
+                        <mat-icon>chevron_right</mat-icon>
+                        <span>{{ title }}</span>
+                    </a>
+                </li>
+            </ul>
+        </mat-expansion-panel>
+    </mat-accordion>
+
+    <article *ngIf="selectedArticle as art" class="article-content animate-slide-in">
+        <div class="article-hero">
+            <h2 class="article-title">{{ art.title }}</h2>
+            <div class="article-meta">
+                <mat-icon>calendar_today</mat-icon>
+                <time class="article-date">{{ art.dateCreated }}</time>
+            </div>
+        </div>
+
+        <div class="article-intro">
+            <p class="intro-text">{{ art.introductionBody }}</p>
+        </div>
+
+        <div class="article-sections">
+            <div *ngFor="let item of art.list; let i = index" class="section-card" [style.animation-delay]="(i * 0.1) + 's'">
+                <div class="section-number">{{ i + 1 }}</div>
+                <h3 class="section-title">{{ item.listTitle }}</h3>
+                <p class="section-body">{{ item.listBody }}</p>
+            </div>
+        </div>
+
+        <div class="article-conclusion">
+            <div class="conclusion-icon">
+                <mat-icon>insights</mat-icon>
+            </div>
+            <h3 class="conclusion-title">{{ art.conclusionTitle }}</h3>
+            <p class="conclusion-text">{{ art.conclusion }}</p>
+        </div>
+
+        <div class="article-footer">
+            <a routerLink="/home/contactus">
+                <button mat-raised-button color="primary" class="cta-button">
+                    <span>Get Started</span>
+                    <mat-icon>arrow_forward</mat-icon>
+                </button>
+            </a>
+        </div>
+    </article>
+
+    <div *ngIf="!selectedArticle" class="no-selection">
+        <mat-icon>menu_book</mat-icon>
+        <h3>Select an Article</h3>
+        <p>Choose an article from the list above to start reading</p>
+    </div>
+</div>

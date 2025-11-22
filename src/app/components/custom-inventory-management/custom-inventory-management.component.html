@@ -1,53 +1,68 @@
-<mat-card class="inv-card sf-bg">
-    <mat-card-title>
-        <h3 class="display-4 content-title sf-inv">
+<div class="inventory-container">
+    <!-- Hero Card -->
+    <div class="hero-card animate-fade-in">
+        <div class="hero-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M2.5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2h-11zm0 1h11a1 1 0 0 1 1 1v3H1.5V2a1 1 0 0 1 1-1zm0 13a1 1 0 0 1-1-1V6h13v7a1 1 0 0 1-1 1h-11z"/>
+                <path d="M2 7.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+            </svg>
+        </div>
+        <h1 class="content-title hero-title">
             Enhance Manufacturing Efficiency with Custom Inventory Management Software
-        </h3>
-    </mat-card-title>
-    <mat-card-content>
-        <p class="content-body">
+        </h1>
+        <p class="content-body hero-description">
             Welcome to Sharp Floor NC! As a manufacturing company, you are well aware of the complexities involved in
-            managing
-            inventory. Traditional inventory management methods can be time-consuming, error-prone, and hinder overall
-            productivity.
-            However, by incorporating a custom Inventory Management Software tailored to your manufacturing processes,
-            your company
-            can unlock a plethora of benefits that lead to streamlined operations and increased profitability.
+            managing inventory. Traditional inventory management methods can be time-consuming, error-prone, and hinder overall
+            productivity. However, by incorporating a custom Inventory Management Software tailored to your manufacturing processes,
+            your company can unlock a plethora of benefits that lead to streamlined operations and increased profitability.
         </p>
-    </mat-card-content>
-</mat-card>
-<mat-card class="inv-card sf-bg" *ngFor="let l of listOfBenefits">
-    <mat-card-title>
-        <h3 class="content-title sf-inv">
-            {{ l.title }}
-        </h3>
-    </mat-card-title>
+    </div>
 
-    <mat-card-content>
-        <p class="content-body">
-            {{ l.description }}
-        </p>
-    </mat-card-content>
-    <mat-card-actions>
-        <a routerLink="/home/contactus">
-            <button mat-raised-button>Find out more</button>
-        </a>
-    </mat-card-actions>
-</mat-card>
+    <!-- Benefits Grid -->
+    <div class="benefits-grid">
+        <div *ngFor="let benefit of listOfBenefits; let i = index" class="benefit-card animate-card" [style.animation-delay]="(i * 0.1) + 's'">
+            <div class="card-number">{{ i + 1 }}</div>
+            <div class="card-shine"></div>
+            <h3 class="content-title card-title">
+                {{ benefit.title }}
+            </h3>
+            <p class="content-body card-description">
+                {{ benefit.description }}
+            </p>
+            <div class="card-footer">
+                <a routerLink="/home/contactus" class="card-link">
+                    Learn More
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
 
-<mat-card class="inv-card sf-bg">
-    <mat-card-content>
+    <!-- Conclusion Card -->
+    <div class="conclusion-card modern-card animate-slide-in">
+        <div class="conclusion-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+            </svg>
+        </div>
+        <h2 class="conclusion-title">Ready to Optimize Your Inventory?</h2>
         <p class="content-body">
-            <strong>
-                In conclusion
-            </strong>
-            , investing in a custom inventory management software solution can revolutionize the way your manufacturing
+            <strong>In conclusion</strong>, investing in a custom inventory management software solution can revolutionize the way your manufacturing
             company operates. With improved inventory control, production planning, resource allocation, and cost reduction, you
-            can
-            enhance overall efficiency, productivity, and profitability. Trust Sharp Floor NC to develop a tailored solution
+            can enhance overall efficiency, productivity, and profitability. Trust Sharp Floor NC to develop a tailored solution
             that aligns with your unique business requirements and sets you on the path to success in the competitive
-            manufacturing
-            landscape. <a routerLink="/home/contactus" class="d-inline">Contact us</a> today to get started!
+            manufacturing landscape.
         </p>
-    </mat-card-content>
-</mat-card>
+        <div class="cta-section">
+            <a routerLink="/home/contactus">
+                <button mat-raised-button color="primary" class="cta-button">
+                    <span>Contact Us Today</span>
+                    <mat-icon>arrow_forward</mat-icon>
+                </button>
+            </a>
+        </div>
+    </div>
+</div>
