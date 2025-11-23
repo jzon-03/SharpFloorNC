@@ -110,6 +110,127 @@
     box-shadow: 0 8px 20px rgba(0,0,0,0.2) !important;
 }
 
+/* TMS Showcase Section */
+.tms-showcase-section {
+    padding: 80px 40px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.tms-showcase-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.showcase-header {
+    position: relative;
+    z-index: 2;
+    margin-bottom: 50px;
+}
+
+.showcase-header .section-title {
+    color: white;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.showcase-header .section-subtitle {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.2rem;
+}
+
+.showcase-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.showcase-info {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.info-item:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateX(5px);
+}
+
+.info-item mat-icon {
+    font-size: 32px;
+    width: 32px;
+    height: 32px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.info-item h4 {
+    margin: 0 0 5px 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.info-item p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+}
+
+.showcase-cta {
+    text-align: center;
+}
+
+.showcase-button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+}
+
+.showcase-button:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.demo-note {
+    margin: 0;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
 /* Mission Section */
 .mission-section {
     max-width: 1400px;
@@ -275,5 +396,20 @@
     
     .header-decoration {
         width: 50px;
+    }
+    
+    /* TMS Showcase Responsive */
+    .showcase-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        text-align: center;
+    }
+    
+    .info-item {
+        justify-content: center;
+    }
+    
+    .tms-showcase-section {
+        padding: 60px 20px;
     }
 }

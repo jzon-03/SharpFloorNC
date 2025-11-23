@@ -34,6 +34,8 @@ import { AboutSection1Component } from '../../components/about/about-section1/ab
 import { AboutSection2Component } from '../../components/about/about-section2/about-section2.component';
 import { AboutSection3Component } from '../../components/about/about-section3/about-section3.component';
 import { HomeSection2Component } from '../../components/home/home-section2/home-section2.component';
+import { TmsShowcaseComponent } from '../../components/tms-showcase/tms-showcase.component';
+import { SafeUrlPipe } from '../../pipes/safe-url.pipe';
 
 
 
@@ -69,7 +71,9 @@ import { HomeSection2Component } from '../../components/home/home-section2/home-
     AboutSection1Component,
     AboutSection2Component,
     AboutSection3Component,
-    HomeSection2Component
+    HomeSection2Component,
+    TmsShowcaseComponent,
+    SafeUrlPipe
   ],
   imports: [
     CommonModule,
