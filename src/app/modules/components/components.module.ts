@@ -35,6 +35,8 @@ import { AboutSection2Component } from '../../components/about/about-section2/ab
 import { AboutSection3Component } from '../../components/about/about-section3/about-section3.component';
 import { HomeSection2Component } from '../../components/home/home-section2/home-section2.component';
 import { TmsShowcaseComponent } from '../../components/tms-showcase/tms-showcase.component';
+import { PreventiveMaintenanceShowcaseComponent } from '../../components/preventive-maintenance-showcase/preventive-maintenance-showcase.component';
+import { InventoryManagementShowcaseComponent } from '../../components/inventory-management-showcase/inventory-management-showcase.component';
 import { SafeUrlPipe } from '../../pipes/safe-url.pipe';
 
 
@@ -73,6 +75,8 @@ import { SafeUrlPipe } from '../../pipes/safe-url.pipe';
     AboutSection3Component,
     HomeSection2Component,
     TmsShowcaseComponent,
+    PreventiveMaintenanceShowcaseComponent,
+    InventoryManagementShowcaseComponent,
     SafeUrlPipe
   ],
   imports: [

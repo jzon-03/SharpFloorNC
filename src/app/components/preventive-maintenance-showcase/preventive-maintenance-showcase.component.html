@@ -1,0 +1,143 @@
+<div class="pm-showcase-container">
+    <!-- Hero Section -->
+    <div class="hero-section animate-fade-in">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="montserrat hero-title">Preventive Maintenance System</h1>
+            <p class="hero-tagline">Intelligent Maintenance Management for Maximum Equipment Uptime</p>
+            <div class="hero-badges">
+                <span class="badge">Scheduled Maintenance</span>
+                <span class="badge">Asset Tracking</span>
+                <span class="badge">Smart Alerts</span>
+                <span class="badge">Mobile Access</span>
+            </div>
+        </div>
+        <div class="hero-decoration"></div>
+    </div>
+
+    <!-- Live Demo Section -->
+    <section class="demo-section">
+        <div class="demo-header">
+            <h2 class="section-title">🚀 Live Interactive Demo</h2>
+            <p class="section-subtitle">Experience our comprehensive Preventive Maintenance System in action</p>
+        </div>
+        
+        <div class="demo-controls">
+            <button mat-raised-button color="primary" (click)="openFullDemo()" class="demo-button">
+                <mat-icon>open_in_new</mat-icon>
+                Open Full Demo
+            </button>
+            <button mat-stroked-button (click)="refreshDemo()" class="demo-button">
+                <mat-icon>refresh</mat-icon>
+                Refresh Demo
+            </button>
+        </div>
+
+        <div class="demo-frame-container">
+            <iframe 
+                #demoFrame
+                [src]="demoUrl | safeUrl" 
+                frameborder="0" 
+                loading="lazy"
+                class="demo-frame"
+                title="Preventive Maintenance System Demo">
+            </iframe>
+            <div class="frame-overlay" (click)="openFullDemo()">
+                <div class="overlay-content">
+                    <mat-icon>touch_app</mat-icon>
+                    <span>Click to interact with live demo</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Features Section -->
+    <section class="features-section">
+        <div class="section-header">
+            <h2 class="section-title">💡 Key Features</h2>
+            <p class="section-subtitle">Comprehensive tools for proactive maintenance management</p>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card" *ngFor="let feature of features" 
+                [class.animate-slide-in]="true">
+                <div class="feature-icon">
+                    <mat-icon>{{ feature.icon }}</mat-icon>
+                </div>
+                <div class="feature-content">
+                    <h3 class="feature-title">{{ feature.title }}</h3>
+                    <p class="feature-description">{{ feature.description }}</p>
+                    
+                    <div class="feature-metrics" *ngIf="feature.metrics">
+                        <div class="metric" *ngFor="let metric of feature.metrics">
+                            <span class="metric-value">{{ metric.value }}</span>
+                            <span class="metric-label">{{ metric.label }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+        <div class="section-header">
+            <h2 class="section-title">📈 Business Benefits</h2>
+            <p class="section-subtitle">Measurable impact on your operations and bottom line</p>
+        </div>
+        
+        <div class="benefits-grid">
+            <div class="benefit-card" *ngFor="let benefit of benefits; let i = index" 
+                [class.animate-slide-in]="true" 
+                [style.animation-delay]="(i * 0.1) + 's'">
+                <div class="benefit-header">
+                    <h3 class="benefit-title">{{ benefit.title }}</h3>
+                    <p class="benefit-description">{{ benefit.description }}</p>
+                </div>
+                <ul class="benefit-points">
+                    <li *ngFor="let point of benefit.points" class="benefit-point">
+                        <mat-icon class="check-icon">check_circle</mat-icon>
+                        <span>{{ point }}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Stack Section -->
+    <section class="tech-section">
+        <div class="section-header">
+            <h2 class="section-title">⚡ Technology Stack</h2>
+            <p class="section-subtitle">Built with modern, reliable technologies for optimal performance</p>
+        </div>
+        
+        <div class="tech-stack">
+            <div class="tech-item" *ngFor="let tech of techStack" 
+                [class.animate-bounce-in]="true">
+                <img [src]="tech.icon" [alt]="tech.name" class="tech-icon">
+                <span class="tech-name">{{ tech.name }}</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2 class="cta-title">Ready to Transform Your Maintenance Operations?</h2>
+            <p class="cta-description">
+                Contact us to learn how our Preventive Maintenance System can help you reduce costs, 
+                improve efficiency, and maximize equipment uptime.
+            </p>
+            <div class="cta-buttons">
+                <button mat-raised-button color="primary" class="cta-button primary">
+                    <mat-icon>schedule_send</mat-icon>
+                    Schedule a Demo
+                </button>
+                <button mat-stroked-button class="cta-button secondary">
+                    <mat-icon>contact_support</mat-icon>
+                    Contact Us
+                </button>
+            </div>
+        </div>
+    </section>
+</div>
