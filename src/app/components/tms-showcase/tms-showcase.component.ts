@@ -11,6 +11,7 @@ interface Feature {
 interface TechItem {
   name: string;
   icon: string;
+  fallbackIcon: string;
 }
 
 interface Benefit {
@@ -72,14 +73,23 @@ export class TmsShowcaseComponent {
   ];
 
   techStack: TechItem[] = [
-    { name: 'Angular', icon: 'assets/img/tech/angular.svg' },
-    { name: 'Angular Material', icon: 'assets/img/tech/material.svg' },
-    { name: '.NET Core', icon: 'assets/img/tech/dotnet.svg' },
-    { name: 'MySQL', icon: 'assets/img/tech/mysql.svg' },
-    { name: 'TypeScript', icon: 'assets/img/tech/typescript.svg' },
-    { name: 'Bootstrap', icon: 'assets/img/tech/bootstrap.svg' },
-    { name: 'Node.js', icon: 'assets/img/tech/nodejs.svg' }
+    { name: 'Angular', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg', fallbackIcon: 'web' },
+    { name: 'Angular Material', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/materialui/materialui-original.svg', fallbackIcon: 'design_services' },
+    { name: '.NET Core', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dotnetcore/dotnetcore-original.svg', fallbackIcon: 'code' },
+    { name: 'MySQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg', fallbackIcon: 'storage' },
+    { name: 'TypeScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg', fallbackIcon: 'javascript' },
+    { name: 'Bootstrap', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg', fallbackIcon: 'style' },
+    { name: 'Node.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg', fallbackIcon: 'memory' }
   ];
+
+  onImageError(event: any, fallbackIcon: string): void {
+    const imgElement = event.target;
+    const fallbackElement = imgElement.nextElementSibling;
+    if (fallbackElement) {
+      imgElement.style.display = 'none';
+      fallbackElement.style.display = 'block';
+    }
+  }
 
   benefits: Benefit[] = [
     {

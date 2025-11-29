@@ -114,7 +114,10 @@
         <div class="tech-stack">
             <div class="tech-item" *ngFor="let tech of techStack" 
                 [class.animate-bounce-in]="true">
-                <img [src]="tech.icon" [alt]="tech.name" class="tech-icon">
+                <div class="tech-icon-container">
+                    <img [src]="tech.icon" [alt]="tech.name" class="tech-icon" (error)="onImageError($event, tech.fallbackIcon)">
+                    <mat-icon class="fallback-icon tech-icon" [style.display]="'none'">{{ tech.fallbackIcon }}</mat-icon>
+                </div>
                 <span class="tech-name">{{ tech.name }}</span>
             </div>
         </div>

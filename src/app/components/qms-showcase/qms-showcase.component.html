@@ -85,7 +85,8 @@
         <div class="tech-stack">
             <div class="tech-item" *ngFor="let tech of techStack">
                 <div class="tech-icon">
-                    <img [src]="tech.icon" [alt]="tech.name" />
+                    <img [src]="tech.icon" [alt]="tech.name" (error)="onImageError($event, tech.fallbackIcon)" />
+                    <mat-icon class="fallback-icon" [style.display]="'none'">{{ tech.fallbackIcon }}</mat-icon>
                 </div>
                 <span class="tech-name">{{ tech.name }}</span>
             </div>
