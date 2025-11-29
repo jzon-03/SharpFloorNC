@@ -1,0 +1,133 @@
+<div class="qms-showcase-container">
+    <!-- Hero Section -->
+    <div class="hero-section animate-fade-in">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="montserrat hero-title">Quality Management System</h1>
+            <p class="hero-tagline">Complete Digital QMS Solution for Manufacturing Excellence</p>
+            <div class="hero-badges">
+                <span class="badge">ISO Compliance</span>
+                <span class="badge">Document Control</span>
+                <span class="badge">Process Management</span>
+                <span class="badge">Audit Trail</span>
+            </div>
+        </div>
+        <div class="hero-decoration"></div>
+    </div>
+
+    <!-- Live Demo Section -->
+    <section class="demo-section">
+        <div class="demo-header">
+            <h2 class="section-title">🚀 Live Interactive Demo</h2>
+            <p class="section-subtitle">Explore our fully functional Quality Management System in action</p>
+        </div>
+        
+        <div class="demo-controls">
+            <button mat-raised-button color="primary" (click)="openFullDemo()" class="demo-button">
+                <mat-icon>open_in_new</mat-icon>
+                Open Full Demo
+            </button>
+            <button mat-stroked-button (click)="refreshDemo()" class="demo-button">
+                <mat-icon>refresh</mat-icon>
+                Refresh Demo
+            </button>
+        </div>
+
+        <div class="demo-frame-container">
+            <iframe 
+                #demoFrame
+                [src]="demoUrl | safeUrl" 
+                frameborder="0" 
+                loading="lazy"
+                class="demo-frame"
+                title="Quality Management System Demo">
+            </iframe>
+            <div class="frame-overlay" (click)="openFullDemo()">
+                <div class="overlay-content">
+                    <mat-icon>touch_app</mat-icon>
+                    <span>Click to interact with live demo</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Highlight -->
+    <section class="features-section animate-slide-in">
+        <div class="section-header">
+            <h2 class="section-title">Key Features Demonstrated</h2>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card" *ngFor="let feature of features; let i = index" 
+                 [style.animation-delay.ms]="i * 100">
+                <div class="feature-icon">
+                    <mat-icon>{{ feature.icon }}</mat-icon>
+                </div>
+                <h3>{{ feature.title }}</h3>
+                <p>{{ feature.description }}</p>
+                <div class="feature-metrics" *ngIf="feature.metrics">
+                    <div class="metric" *ngFor="let metric of feature.metrics">
+                        <span class="metric-value">{{ metric.value }}</span>
+                        <span class="metric-label">{{ metric.label }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Stack -->
+    <section class="tech-section">
+        <div class="section-header">
+            <h2 class="section-title">Built With Modern Technology</h2>
+            <p class="section-subtitle">Enterprise-grade architecture for reliability and scalability</p>
+        </div>
+        
+        <div class="tech-stack">
+            <div class="tech-item" *ngFor="let tech of techStack">
+                <div class="tech-icon">
+                    <img [src]="tech.icon" [alt]="tech.name" />
+                </div>
+                <span class="tech-name">{{ tech.name }}</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+        <div class="benefits-grid">
+            <div class="benefit-card" *ngFor="let benefit of benefits; let i = index">
+                <div class="benefit-number">{{ i + 1 }}</div>
+                <div class="benefit-content">
+                    <h3>{{ benefit.title }}</h3>
+                    <p>{{ benefit.description }}</p>
+                    <ul class="benefit-points">
+                        <li *ngFor="let point of benefit.points">
+                            <mat-icon>check_circle</mat-icon>
+                            <span>{{ point }}</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Ready to Transform Your Quality Management?</h2>
+            <p>Let's discuss how we can customize a quality management solution for your specific needs</p>
+            <div class="cta-buttons">
+                <a routerLink="/home/contactus">
+                    <button mat-raised-button color="primary" class="cta-button">
+                        <mat-icon>contact_mail</mat-icon>
+                        Get Started Today
+                    </button>
+                </a>
+                <button mat-stroked-button (click)="openFullDemo()" class="cta-button secondary">
+                    <mat-icon>play_arrow</mat-icon>
+                    Try Full Demo
+                </button>
+            </div>
+        </div>
+    </section>
+</div>

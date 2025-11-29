@@ -73,10 +73,12 @@ export class InventoryManagementShowcaseComponent {
 
   techStack: TechItem[] = [
     { name: 'Angular', icon: 'assets/img/tech/angular.svg' },
+    { name: 'Angular Material', icon: 'assets/img/tech/material.svg' },
+    { name: '.NET Core', icon: 'assets/img/tech/dotnet.svg' },
+    { name: 'MySQL', icon: 'assets/img/tech/mysql.svg' },
     { name: 'TypeScript', icon: 'assets/img/tech/typescript.svg' },
-    { name: 'Node.js', icon: 'assets/img/tech/nodejs.svg' },
-    { name: 'MongoDB', icon: 'assets/img/tech/mongodb.svg' },
-    { name: 'Material Design', icon: 'assets/img/tech/material.svg' }
+    { name: 'Bootstrap', icon: 'assets/img/tech/bootstrap.svg' },
+    { name: 'Node.js', icon: 'assets/img/tech/nodejs.svg' }
   ];
 
   benefits: Benefit[] = [

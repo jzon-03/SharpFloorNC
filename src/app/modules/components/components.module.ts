@@ -37,6 +37,7 @@ import { HomeSection2Component } from '../../components/home/home-section2/home-
 import { TmsShowcaseComponent } from '../../components/tms-showcase/tms-showcase.component';
 import { PreventiveMaintenanceShowcaseComponent } from '../../components/preventive-maintenance-showcase/preventive-maintenance-showcase.component';
 import { InventoryManagementShowcaseComponent } from '../../components/inventory-management-showcase/inventory-management-showcase.component';
+import { QmsShowcaseComponent } from '../../components/qms-showcase/qms-showcase.component';
 import { SafeUrlPipe } from '../../pipes/safe-url.pipe';
 
 
@@ -77,6 +78,7 @@ import { SafeUrlPipe } from '../../pipes/safe-url.pipe';
     TmsShowcaseComponent,
     PreventiveMaintenanceShowcaseComponent,
     InventoryManagementShowcaseComponent,
+    QmsShowcaseComponent,
     SafeUrlPipe
   ],
   imports: [

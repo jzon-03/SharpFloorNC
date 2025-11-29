@@ -13,6 +13,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { TmsShowcaseComponent } from './components/tms-showcase/tms-showcase.component';
 import { PreventiveMaintenanceShowcaseComponent } from './components/preventive-maintenance-showcase/preventive-maintenance-showcase.component';
 import { InventoryManagementShowcaseComponent } from './components/inventory-management-showcase/inventory-management-showcase.component';
+import { QmsShowcaseComponent } from './components/qms-showcase/qms-showcase.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'home', pathMatch:'full'},
@@ -25,6 +26,7 @@ const routes: Routes = [
     {path:'custommes',component:CustommesComponent},
     {path:'custominventory',component:CustomInventoryManagementComponent},
     {path:'qms',component:QualityManagementSystemComponent},
+    {path:'qms-demo',component:QmsShowcaseComponent},
     {path:'tms-demo',component:TmsShowcaseComponent},
     {path:'preventive-maintenance-demo',component:PreventiveMaintenanceShowcaseComponent},
     {path:'inventory-management-demo',component:InventoryManagementShowcaseComponent},
