@@ -1,0 +1,305 @@
+<!-- Calculator Section -->
+<div class="calculator-section">
+  <div class="calculator-header">
+    <h3>
+      <mat-icon>speed</mat-icon>
+      Speeds & Feeds Calculator
+    </h3>
+    <p class="subtitle">Calculate optimal cutting parameters for CNC machining operations</p>
+  </div>
+
+  <div class="calculator-form">
+    <div class="form-row">
+      <!-- Material Selection -->
+      <mat-form-field appearance="outline" class="material-field">
+        <mat-label>Material</mat-label>
+        <mat-select [(value)]="selectedMaterial" (selectionChange)="calculateSpeedsFeedsValues()">
+          <mat-optgroup *ngFor="let category of ['steel', 'aluminum', 'stainless', 'titanium', 'plastics', 'composites']" 
+                        [label]="category | titlecase">
+            <mat-option *ngFor="let material of materials | filter:category:'category'" 
+                        [value]="getMaterialSelectId(material)">
+              <mat-icon [style.color]="getCategoryColor(material.category)">
+                {{ getCategoryIcon(material.category) }}
+              </mat-icon>
+              {{ material.material }}
+            </mat-option>
+          </mat-optgroup>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Tool Selection -->
+      <mat-form-field appearance="outline" class="tool-field">
+        <mat-label>Tool Type</mat-label>
+        <mat-select [(value)]="selectedTool" (selectionChange)="calculateSpeedsFeedsValues()">
+          <mat-optgroup *ngFor="let category of ['endmill', 'drill', 'tap', 'reamer', 'face']" 
+                        [label]="category | titlecase">
+            <mat-option *ngFor="let tool of tools | filter:category:'category'" 
+                        [value]="getToolSelectId(tool)">
+              <mat-icon>{{ getToolCategoryIcon(tool.category) }}</mat-icon>
+              {{ tool.tool_type }}
+            </mat-option>
+          </mat-optgroup>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <!-- Tool Diameter -->
+      <mat-form-field appearance="outline" class="diameter-field">
+        <mat-label>Tool Diameter (inches)</mat-label>
+        <input matInput type="number" [(ngModel)]="toolDiameter" 
+               (input)="calculateSpeedsFeedsValues()" 
+               min="0.001" max="10" step="0.001"
+               placeholder="0.500">
+        <mat-icon matSuffix>straighten</mat-icon>
+      </mat-form-field>
+
+      <!-- Tool Material -->
+      <mat-form-field appearance="outline" class="tool-material-field">
+        <mat-label>Tool Material</mat-label>
+        <mat-select [(value)]="toolMaterial" (selectionChange)="calculateSpeedsFeedsValues()">
+          <mat-option value="hss">
+            <mat-icon>build</mat-icon>
+            High Speed Steel (HSS)
+          </mat-option>
+          <mat-option value="carbide">
+            <mat-icon>diamond</mat-icon>
+            Carbide
+          </mat-option>
+          <mat-option value="ceramic">
+            <mat-icon>auto_awesome</mat-icon>
+            Ceramic/CBN
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Coating Checkbox -->
+      <div class="coating-checkbox">
+        <mat-checkbox [(ngModel)]="hasCoating" (change)="calculateSpeedsFeedsValues()">
+          <mat-icon>color_lens</mat-icon>
+          Coated Tool
+        </mat-checkbox>
+      </div>
+    </div>
+  </div>
+
+  <!-- Results Section -->
+  <div class="results-section" *ngIf="calculationResult">
+    <h4>
+      <mat-icon>analytics</mat-icon>
+      Calculated Parameters
+    </h4>
+    
+    <div class="results-grid">
+      <div class="result-card primary">
+        <mat-icon>speed</mat-icon>
+        <div class="result-content">
+          <div class="result-value">{{ calculationResult.rpm | number }}</div>
+          <div class="result-label">RPM</div>
+          <div class="result-subtitle">Spindle Speed</div>
+        </div>
+      </div>
+
+      <div class="result-card secondary">
+        <mat-icon>trending_up</mat-icon>
+        <div class="result-content">
+          <div class="result-value">{{ calculationResult.feed_rate | number:'1.1-1' }}</div>
+          <div class="result-label">IPM</div>
+          <div class="result-subtitle">Feed Rate</div>
+        </div>
+      </div>
+
+      <div class="result-card accent">
+        <mat-icon>straighten</mat-icon>
+        <div class="result-content">
+          <div class="result-value">{{ calculationResult.cutting_speed | number }}</div>
+          <div class="result-label">SFM</div>
+          <div class="result-subtitle">Surface Speed</div>
+        </div>
+      </div>
+
+      <div class="result-card warn">
+        <mat-icon>grain</mat-icon>
+        <div class="result-content">
+          <div class="result-value">{{ calculationResult.chipload | number:'1.0-3' }}</div>
+          <div class="result-label">IPT</div>
+          <div class="result-subtitle">Chip Load</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="calculation-summary">
+      <mat-icon>info</mat-icon>
+      <div>
+        <strong>{{ calculationResult.material }}</strong> with 
+        <strong>{{ calculationResult.tool_diameter }}" {{ calculationResult.tool_type }}</strong>
+        <br>
+        <small>These are starting parameters. Adjust based on machine capability and part requirements.</small>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Reference Tables Section -->
+<div class="reference-section">
+  <mat-tab-group class="reference-tabs">
+    
+    <!-- Material Reference Tab -->
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon>inventory_2</mat-icon>
+        Material Reference
+      </ng-template>
+      
+      <div class="table-container">
+        <div class="table-header">
+          <h4>Material Cutting Speeds (SFM)</h4>
+          <button mat-raised-button color="primary" (click)="exportToCSV()">
+            <mat-icon>download</mat-icon>
+            Export CSV
+          </button>
+        </div>
+
+        <table mat-table [dataSource]="materials" class="material-table">
+          
+          <ng-container matColumnDef="material">
+            <th mat-header-cell *matHeaderCellDef>Material</th>
+            <td mat-cell *matCellDef="let material">
+              <div class="material-cell">
+                <mat-icon [style.color]="getCategoryColor(material.category)">
+                  {{ getCategoryIcon(material.category) }}
+                </mat-icon>
+                <div>
+                  <strong>{{ material.material }}</strong>
+                  <br>
+                  <small class="category-badge" [style.background-color]="getCategoryColor(material.category)">
+                    {{ material.category | titlecase }}
+                  </small>
+                </div>
+              </div>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="hardness">
+            <th mat-header-cell *matHeaderCellDef>Hardness</th>
+            <td mat-cell *matCellDef="let material">{{ material.hardness }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="hss_sfm">
+            <th mat-header-cell *matHeaderCellDef>HSS SFM</th>
+            <td mat-cell *matCellDef="let material">{{ material.hss_sfm }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="carbide_sfm">
+            <th mat-header-cell *matHeaderCellDef>Carbide SFM</th>
+            <td mat-cell *matCellDef="let material">{{ material.carbide_sfm }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="ceramic_sfm">
+            <th mat-header-cell *matHeaderCellDef>Ceramic SFM</th>
+            <td mat-cell *matCellDef="let material">{{ material.ceramic_sfm }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="chipload_range">
+            <th mat-header-cell *matHeaderCellDef>Chipload Range</th>
+            <td mat-cell *matCellDef="let material">{{ material.chipload_range }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef>Description</th>
+            <td mat-cell *matCellDef="let material">{{ material.description }}</td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="materialColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: materialColumns;" 
+              [class]="row.category + '-row'"></tr>
+        </table>
+      </div>
+    </mat-tab>
+
+    <!-- Tool Reference Tab -->
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon>build_circle</mat-icon>
+        Tool Reference
+      </ng-template>
+      
+      <div class="table-container">
+        <div class="table-header">
+          <h4>Tool Specifications & Factors</h4>
+        </div>
+
+        <table mat-table [dataSource]="tools" class="tool-table">
+          
+          <ng-container matColumnDef="tool_type">
+            <th mat-header-cell *matHeaderCellDef>Tool Type</th>
+            <td mat-cell *matCellDef="let tool">
+              <div class="tool-cell">
+                <mat-icon>{{ getToolCategoryIcon(tool.category) }}</mat-icon>
+                <strong>{{ tool.tool_type }}</strong>
+              </div>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="flutes">
+            <th mat-header-cell *matHeaderCellDef>Flutes</th>
+            <td mat-cell *matCellDef="let tool">{{ tool.flutes }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="chipload_factor">
+            <th mat-header-cell *matHeaderCellDef>Chipload Factor</th>
+            <td mat-cell *matCellDef="let tool">{{ tool.chipload_factor }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="speed_factor">
+            <th mat-header-cell *matHeaderCellDef>Speed Factor</th>
+            <td mat-cell *matCellDef="let tool">{{ tool.speed_factor }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef>Description</th>
+            <td mat-cell *matCellDef="let tool">{{ tool.description }}</td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="toolColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: toolColumns;" 
+              [class]="row.category + '-tool-row'"></tr>
+        </table>
+      </div>
+    </mat-tab>
+
+  </mat-tab-group>
+</div>
+
+<!-- Quick Reference Cards -->
+<div class="quick-reference">
+  <div class="reference-cards">
+    <div class="reference-card">
+      <h4>Formula Reference</h4>
+      <ul>
+        <li><strong>RPM</strong> = (SFM × 12) ÷ (π × Diameter)</li>
+        <li><strong>Feed Rate</strong> = RPM × Chipload × Flutes</li>
+        <li><strong>SFM</strong> = (RPM × π × Diameter) ÷ 12</li>
+        <li><strong>Material Removal</strong> = Width × Depth × Feed</li>
+      </ul>
+    </div>
+    <div class="reference-card">
+      <h4>General Guidelines</h4>
+      <ul>
+        <li><strong>Start Conservative</strong> - 75% of recommended speeds</li>
+        <li><strong>Increase Gradually</strong> - Monitor chip formation</li>
+        <li><strong>Proper Coolant</strong> - Essential for tool life</li>
+        <li><strong>Machine Rigidity</strong> - Affects achievable parameters</li>
+      </ul>
+    </div>
+    <div class="reference-card">
+      <h4>Troubleshooting</h4>
+      <ul>
+        <li><strong>Chatter</strong> - Reduce speed or increase feed</li>
+        <li><strong>Poor Finish</strong> - Check chipload and rigidity</li>
+        <li><strong>Tool Wear</strong> - Reduce speed, increase feed</li>
+        <li><strong>Built-up Edge</strong> - Increase speed or coolant</li>
+      </ul>
+    </div>
+  </div>
+</div>

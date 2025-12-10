@@ -1,0 +1,345 @@
+/* Calculator Section */
+.calculator-section {
+  margin-bottom: 2rem;
+}
+
+.calculator-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.calculator-header h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+  color: #1976d2;
+  font-size: 1.5rem;
+}
+
+.subtitle {
+  color: #666;
+  margin: 0.5rem 0 0 0;
+  font-size: 0.95rem;
+}
+
+/* Form Styling */
+.calculator-form {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.material-field, .tool-field {
+  flex: 2;
+  min-width: 250px;
+}
+
+.diameter-field, .tool-material-field {
+  flex: 1;
+  min-width: 200px;
+}
+
+.coating-checkbox {
+  display: flex;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.coating-checkbox mat-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Results Section */
+.results-section {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin: 2rem 0;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.results-section h4 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 1.5rem 0;
+  color: white;
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.result-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.result-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(0,0,0,0.15);
+}
+
+.result-card mat-icon {
+  font-size: 2rem;
+  width: 2rem;
+  height: 2rem;
+  opacity: 0.9;
+}
+
+.result-content {
+  flex: 1;
+}
+
+.result-value {
+  font-size: 1.8rem;
+  font-weight: bold;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+
+.result-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+.result-subtitle {
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+.calculation-summary {
+  display: flex;
+  gap: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.calculation-summary mat-icon {
+  margin-top: 0.25rem;
+  opacity: 0.8;
+}
+
+/* Reference Section */
+.reference-section {
+  margin: 2rem 0;
+}
+
+.reference-tabs {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.table-container {
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.table-header h4 {
+  margin: 0;
+  color: #333;
+}
+
+/* Material Table */
+.material-table {
+  width: 100%;
+}
+
+.material-cell {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.material-cell mat-icon {
+  flex-shrink: 0;
+}
+
+.category-badge {
+  color: white;
+  padding: 0.2rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Material Category Row Colors */
+.steel-row {
+  border-left: 4px solid #607d8b;
+}
+
+.aluminum-row {
+  border-left: 4px solid #2196f3;
+}
+
+.stainless-row {
+  border-left: 4px solid #9c27b0;
+}
+
+.titanium-row {
+  border-left: 4px solid #ff5722;
+}
+
+.plastics-row {
+  border-left: 4px solid #4caf50;
+}
+
+.composites-row {
+  border-left: 4px solid #ff9800;
+}
+
+/* Tool Table */
+.tool-table {
+  width: 100%;
+}
+
+.tool-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.endmill-tool-row {
+  border-left: 4px solid #1976d2;
+}
+
+.drill-tool-row {
+  border-left: 4px solid #388e3c;
+}
+
+.tap-tool-row {
+  border-left: 4px solid #f57c00;
+}
+
+.reamer-tool-row {
+  border-left: 4px solid #7b1fa2;
+}
+
+.face-tool-row {
+  border-left: 4px solid #d32f2f;
+}
+
+/* Quick Reference */
+.quick-reference {
+  margin-top: 2rem;
+}
+
+.reference-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.reference-card {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.reference-card h4 {
+  color: #495057;
+  margin: 0 0 1rem 0;
+  font-size: 1.1rem;
+}
+
+.reference-card ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.reference-card li {
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+.reference-card strong {
+  color: #495057;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .form-row {
+    flex-direction: column;
+  }
+  
+  .material-field, .tool-field, 
+  .diameter-field, .tool-material-field {
+    min-width: unset;
+    width: 100%;
+  }
+  
+  .results-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+  
+  .result-value {
+    font-size: 1.4rem;
+  }
+  
+  .reference-cards {
+    grid-template-columns: 1fr;
+  }
+  
+  .table-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .calculator-form {
+    padding: 1rem;
+  }
+  
+  .results-section {
+    padding: 1rem;
+  }
+  
+  .results-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .table-container {
+    padding: 0.5rem;
+  }
+}

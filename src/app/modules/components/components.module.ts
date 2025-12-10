@@ -41,6 +41,8 @@ import { QmsShowcaseComponent } from '../../components/qms-showcase/qms-showcase
 import { SafeUrlPipe } from '../../pipes/safe-url.pipe';
 import { ToolsComponent } from '../../components/tools/tools.component';
 import { TapDrillChartComponent } from '../../components/tools/tap-drill-chart/tap-drill-chart.component';
+import { SpeedsFeedsComponent } from '../../components/tools/speeds-feeds/speeds-feeds.component';
+import { FilterPipe } from '../../pipes/filter.pipe';
 
 
 
@@ -83,7 +85,9 @@ import { TapDrillChartComponent } from '../../components/tools/tap-drill-chart/t
     QmsShowcaseComponent,
     SafeUrlPipe,
     ToolsComponent,
-    TapDrillChartComponent
+    TapDrillChartComponent,
+    SpeedsFeedsComponent,
+    FilterPipe
   ],
   imports: [
     CommonModule,
