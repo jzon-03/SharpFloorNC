@@ -42,6 +42,8 @@ import { SafeUrlPipe } from '../../pipes/safe-url.pipe';
 import { ToolsComponent } from '../../components/tools/tools.component';
 import { TapDrillChartComponent } from '../../components/tools/tap-drill-chart/tap-drill-chart.component';
 import { SpeedsFeedsComponent } from '../../components/tools/speeds-feeds/speeds-feeds.component';
+import { CalculatorsComponent } from '../../components/tools/calculators/calculators.component';
+import { MaterialChartsComponent } from '../../components/tools/material-charts/material-charts.component';
 import { FilterPipe } from '../../pipes/filter.pipe';
 
 
@@ -87,6 +89,8 @@ import { FilterPipe } from '../../pipes/filter.pipe';
     ToolsComponent,
     TapDrillChartComponent,
     SpeedsFeedsComponent,
+    CalculatorsComponent,
+    MaterialChartsComponent,
     FilterPipe
   ],
   imports: [

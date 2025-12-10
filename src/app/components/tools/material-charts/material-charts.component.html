@@ -1,0 +1,461 @@
+<!-- Header Section -->
+<div class="material-charts-header">
+  <h3>
+    <mat-icon>table_chart</mat-icon>
+    Material Properties & Charts
+  </h3>
+  <p class="subtitle">Comprehensive material properties and machining recommendations</p>
+</div>
+
+<!-- Controls Section -->
+<div class="controls-section">
+  <div class="search-controls">
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-label>Search materials, grades, or applications</mat-label>
+      <input matInput [(ngModel)]="searchTerm" (input)="filterMaterials()" placeholder="e.g., 6061, steel, aerospace">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="category-field">
+      <mat-label>Filter by Category</mat-label>
+      <mat-select [(value)]="selectedCategory" (selectionChange)="filterMaterials()">
+        <mat-option value="all">All Categories</mat-option>
+        <mat-option value="steel">Steel</mat-option>
+        <mat-option value="aluminum">Aluminum</mat-option>
+        <mat-option value="stainless">Stainless Steel</mat-option>
+        <mat-option value="titanium">Titanium</mat-option>
+        <mat-option value="brass">Brass</mat-option>
+        <mat-option value="copper">Copper</mat-option>
+        <mat-option value="plastic">Plastics</mat-option>
+        <mat-option value="composite">Composites</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="availability-field">
+      <mat-label>Filter by Availability</mat-label>
+      <mat-select [(value)]="selectedAvailability" (selectionChange)="filterMaterials()">
+        <mat-option value="all">All Availability</mat-option>
+        <mat-option value="excellent">Excellent</mat-option>
+        <mat-option value="good">Good</mat-option>
+        <mat-option value="fair">Fair</mat-option>
+        <mat-option value="limited">Limited</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <!-- Quick Stats -->
+  <div class="stats-cards">
+    <div class="stat-card">
+      <mat-icon>inventory</mat-icon>
+      <div>
+        <strong>{{ filteredMaterials.length }} Materials</strong>
+        <p>Currently displayed</p>
+      </div>
+    </div>
+    <div class="stat-card">
+      <mat-icon>category</mat-icon>
+      <div>
+        <strong>{{ materials.length }} Total</strong>
+        <p>In database</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Material Charts Tabs -->
+<mat-tab-group class="material-tabs">
+  
+  <!-- Material Properties Tab -->
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon>inventory_2</mat-icon>
+      Material Properties
+    </ng-template>
+    
+    <div class="tab-content">
+      <div class="table-header">
+        <h4>Material Properties Database</h4>
+        <button mat-raised-button color="primary" (click)="exportMaterialData()">
+          <mat-icon>download</mat-icon>
+          Export CSV
+        </button>
+      </div>
+
+      <div class="table-container">
+        <table mat-table [dataSource]="filteredMaterials" class="materials-table">
+          
+          <!-- Material Column -->
+          <ng-container matColumnDef="material">
+            <th mat-header-cell *matHeaderCellDef>Material</th>
+            <td mat-cell *matCellDef="let material">
+              <div class="material-cell">
+                <mat-icon [style.color]="getCategoryColor(material.category)">
+                  {{ getCategoryIcon(material.category) }}
+                </mat-icon>
+                <div>
+                  <strong>{{ material.material }}</strong>
+                  <br>
+                  <small class="category-badge" [style.background-color]="getCategoryColor(material.category)">
+                    {{ material.category | titlecase }}
+                  </small>
+                </div>
+              </div>
+            </td>
+          </ng-container>
+
+          <!-- Grade Column -->
+          <ng-container matColumnDef="grade">
+            <th mat-header-cell *matHeaderCellDef>Grade</th>
+            <td mat-cell *matCellDef="let material">
+              <strong>{{ material.grade }}</strong>
+              <br>
+              <small class="availability-badge" [style.color]="getAvailabilityColor(material.availability)">
+                {{ material.availability | titlecase }}
+              </small>
+            </td>
+          </ng-container>
+
+          <!-- Density Column -->
+          <ng-container matColumnDef="density">
+            <th mat-header-cell *matHeaderCellDef>Density</th>
+            <td mat-cell *matCellDef="let material">
+              {{ material.density | number:'1.3-3' }}
+              <br>
+              <small>lb/in³</small>
+            </td>
+          </ng-container>
+
+          <!-- Tensile Strength Column -->
+          <ng-container matColumnDef="tensile_strength">
+            <th mat-header-cell *matHeaderCellDef>Tensile Strength</th>
+            <td mat-cell *matCellDef="let material">
+              {{ material.tensile_strength | number }}
+              <br>
+              <small>psi</small>
+            </td>
+          </ng-container>
+
+          <!-- Hardness Column -->
+          <ng-container matColumnDef="hardness">
+            <th mat-header-cell *matHeaderCellDef>Hardness</th>
+            <td mat-cell *matCellDef="let material">{{ material.hardness }}</td>
+          </ng-container>
+
+          <!-- Machinability Column -->
+          <ng-container matColumnDef="machinability_rating">
+            <th mat-header-cell *matHeaderCellDef>Machinability</th>
+            <td mat-cell *matCellDef="let material">
+              <div class="machinability-cell">
+                <span class="rating-value" [style.color]="getMachinabilityColor(material.machinability_rating)">
+                  {{ material.machinability_rating }}
+                </span>
+                <div class="rating-bar">
+                  <div class="rating-fill" 
+                       [style.width.%]="material.machinability_rating" 
+                       [style.background-color]="getMachinabilityColor(material.machinability_rating)">
+                  </div>
+                </div>
+              </div>
+            </td>
+          </ng-container>
+
+          <!-- Recommended SFM Column -->
+          <ng-container matColumnDef="recommended_sfm">
+            <th mat-header-cell *matHeaderCellDef>Recommended SFM</th>
+            <td mat-cell *matCellDef="let material">
+              <div class="sfm-values">
+                <div class="sfm-item">
+                  <strong>HSS:</strong> {{ material.recommended_sfm.hss }}
+                </div>
+                <div class="sfm-item">
+                  <strong>Carbide:</strong> {{ material.recommended_sfm.carbide }}
+                </div>
+              </div>
+            </td>
+          </ng-container>
+
+          <!-- Applications Column -->
+          <ng-container matColumnDef="applications">
+            <th mat-header-cell *matHeaderCellDef>Applications</th>
+            <td mat-cell *matCellDef="let material">
+              <div class="applications-cell">
+                <mat-chip-listbox>
+                  <mat-chip *ngFor="let app of material.applications.slice(0, 2)">
+                    {{ app }}
+                  </mat-chip>
+                  <mat-chip *ngIf="material.applications.length > 2" 
+                           [matTooltip]="material.applications.slice(2).join(', ')">
+                    +{{ material.applications.length - 2 }}
+                  </mat-chip>
+                </mat-chip-listbox>
+              </div>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="materialColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: materialColumns;" 
+              [class]="row.category + '-row'"
+              [matTooltip]="row.machining_notes"></tr>
+        </table>
+      </div>
+    </div>
+  </mat-tab>
+
+  <!-- Detailed Properties Tab -->
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon>analytics</mat-icon>
+      Detailed Properties
+    </ng-template>
+    
+    <div class="tab-content">
+      <div class="detailed-view">
+        <div class="material-cards">
+          <div *ngFor="let material of filteredMaterials" class="material-detail-card">
+            
+            <div class="card-header">
+              <div class="material-title">
+                <mat-icon [style.color]="getCategoryColor(material.category)">
+                  {{ getCategoryIcon(material.category) }}
+                </mat-icon>
+                <div>
+                  <h4>{{ material.material }}</h4>
+                  <p>{{ material.grade }}</p>
+                </div>
+              </div>
+              <div class="cost-indicator">
+                <span class="cost-badge" [style.background-color]="getCostColor(material.cost_index)">
+                  Cost: {{ material.cost_index }}/10
+                </span>
+              </div>
+            </div>
+
+            <div class="property-grid">
+              <div class="property-item">
+                <mat-icon>fitness_center</mat-icon>
+                <div>
+                  <strong>Tensile Strength</strong>
+                  <span>{{ material.tensile_strength | number }} psi</span>
+                </div>
+              </div>
+              
+              <div class="property-item">
+                <mat-icon>speed</mat-icon>
+                <div>
+                  <strong>Yield Strength</strong>
+                  <span>{{ material.yield_strength | number }} psi</span>
+                </div>
+              </div>
+
+              <div class="property-item">
+                <mat-icon>straighten</mat-icon>
+                <div>
+                  <strong>Modulus of Elasticity</strong>
+                  <span>{{ material.modulus_elasticity | number:'1.1-1' }} × 10⁶ psi</span>
+                </div>
+              </div>
+
+              <div class="property-item">
+                <mat-icon>thermostat</mat-icon>
+                <div>
+                  <strong>Melting Point</strong>
+                  <span>{{ material.melting_point | number }}°F</span>
+                </div>
+              </div>
+
+              <div class="property-item">
+                <mat-icon>whatshot</mat-icon>
+                <div>
+                  <strong>Thermal Conductivity</strong>
+                  <span>{{ material.thermal_conductivity | number:'1.1-2' }} BTU/hr-ft-°F</span>
+                </div>
+              </div>
+
+              <div class="property-item">
+                <mat-icon>scale</mat-icon>
+                <div>
+                  <strong>Density</strong>
+                  <span>{{ material.density | number:'1.3-3' }} lb/in³</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="machining-info">
+              <h5>
+                <mat-icon>build</mat-icon>
+                Machining Information
+              </h5>
+              <p><strong>Machinability Rating:</strong> {{ material.machinability_rating }}/100</p>
+              <p><strong>Recommended SFM:</strong> HSS {{ material.recommended_sfm.hss }}, Carbide {{ material.recommended_sfm.carbide }}</p>
+              <p><strong>Notes:</strong> {{ material.machining_notes }}</p>
+            </div>
+
+            <div class="applications-section">
+              <h5>
+                <mat-icon>apps</mat-icon>
+                Applications
+              </h5>
+              <div class="application-chips">
+                <mat-chip-listbox>
+                  <mat-chip *ngFor="let app of material.applications">{{ app }}</mat-chip>
+                </mat-chip-listbox>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+
+  <!-- Cutting Fluids Tab -->
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon>water_drop</mat-icon>
+      Cutting Fluids
+    </ng-template>
+    
+    <div class="tab-content">
+      <div class="table-header">
+        <h4>Cutting Fluid Selection Guide</h4>
+        <button mat-raised-button color="primary" (click)="exportFluidData()">
+          <mat-icon>download</mat-icon>
+          Export CSV
+        </button>
+      </div>
+
+      <div class="fluid-cards">
+        <div *ngFor="let fluid of cuttingFluids" class="fluid-card">
+          
+          <div class="fluid-header">
+            <h4>{{ fluid.name }}</h4>
+            <span class="fluid-type" [class]="fluid.type">{{ fluid.type | titlecase }}</span>
+          </div>
+
+          <div class="fluid-details">
+            <div class="detail-section">
+              <h5>
+                <mat-icon>category</mat-icon>
+                Suitable Materials
+              </h5>
+              <mat-chip-listbox>
+                <mat-chip *ngFor="let material of fluid.materials">{{ material }}</mat-chip>
+              </mat-chip-listbox>
+            </div>
+
+            <div class="detail-section">
+              <h5>
+                <mat-icon>build</mat-icon>
+                Operations
+              </h5>
+              <mat-chip-listbox>
+                <mat-chip *ngFor="let operation of fluid.operations">{{ operation }}</mat-chip>
+              </mat-chip-listbox>
+            </div>
+
+            <div class="detail-section">
+              <h5>
+                <mat-icon>check_circle</mat-icon>
+                Advantages
+              </h5>
+              <ul>
+                <li *ngFor="let advantage of fluid.advantages">{{ advantage }}</li>
+              </ul>
+            </div>
+
+            <div class="detail-section">
+              <h5>
+                <mat-icon>warning</mat-icon>
+                Disadvantages
+              </h5>
+              <ul>
+                <li *ngFor="let disadvantage of fluid.disadvantages">{{ disadvantage }}</li>
+              </ul>
+            </div>
+
+            <div class="detail-section" *ngIf="fluid.mixing_ratio">
+              <h5>
+                <mat-icon>science</mat-icon>
+                Specifications
+              </h5>
+              <p><strong>Mixing Ratio:</strong> {{ fluid.mixing_ratio }}</p>
+              <p *ngIf="fluid.temperature_range"><strong>Temperature Range:</strong> {{ fluid.temperature_range }}</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+
+</mat-tab-group>
+
+<!-- Reference Section -->
+<div class="reference-section">
+  <div class="reference-cards">
+    
+    <div class="reference-card">
+      <h4>
+        <mat-icon>info</mat-icon>
+        Material Selection Guide
+      </h4>
+      <div class="guide-content">
+        <div class="guide-item">
+          <strong>Machinability Rating:</strong> Based on 360 Brass (100). Higher numbers = easier to machine.
+        </div>
+        <div class="guide-item">
+          <strong>Cost Index:</strong> Relative material cost scale from 1 (lowest) to 10 (highest).
+        </div>
+        <div class="guide-item">
+          <strong>SFM Recommendations:</strong> Starting values for tool speeds. Adjust based on conditions.
+        </div>
+        <div class="guide-item">
+          <strong>Availability:</strong> Current market availability and lead times for materials.
+        </div>
+      </div>
+    </div>
+
+    <div class="reference-card">
+      <h4>
+        <mat-icon>tips_and_updates</mat-icon>
+        Machining Tips
+      </h4>
+      <div class="guide-content">
+        <div class="guide-item">
+          <strong>Work Hardening:</strong> Stainless steels and some alloys work harden rapidly.
+        </div>
+        <div class="guide-item">
+          <strong>Built-up Edge:</strong> Common with aluminum and soft steels at low speeds.
+        </div>
+        <div class="guide-item">
+          <strong>Tool Selection:</strong> Match tool material to workpiece for optimal results.
+        </div>
+        <div class="guide-item">
+          <strong>Coolant Choice:</strong> Critical for tool life and surface finish quality.
+        </div>
+      </div>
+    </div>
+
+    <div class="reference-card">
+      <h4>
+        <mat-icon>security</mat-icon>
+        Safety Considerations
+      </h4>
+      <div class="guide-content">
+        <div class="guide-item">
+          <strong>Titanium:</strong> Fire hazard with chips. Use flood coolant and proper chip management.
+        </div>
+        <div class="guide-item">
+          <strong>Cutting Oils:</strong> Fire hazard, proper ventilation required.
+        </div>
+        <div class="guide-item">
+          <strong>Material Handling:</strong> Some alloys have sharp edges and toxic elements.
+        </div>
+        <div class="guide-item">
+          <strong>Coolant Safety:</strong> Proper mixing ratios and maintenance prevent health issues.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

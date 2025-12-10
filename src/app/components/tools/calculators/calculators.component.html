@@ -1,0 +1,377 @@
+<!-- Header Section -->
+<div class="calculators-header">
+  <h3>
+    <mat-icon>calculate</mat-icon>
+    Machining Calculators
+  </h3>
+  <p class="subtitle">Essential calculations for CNC machining operations and setup</p>
+  
+  <div class="export-section">
+    <button mat-raised-button color="primary" (click)="exportCalculations()">
+      <mat-icon>download</mat-icon>
+      Export All Calculations
+    </button>
+  </div>
+</div>
+
+<!-- Calculator Grid -->
+<div class="calculators-grid">
+
+  <!-- Surface Speed Calculator -->
+  <div class="calculator-card">
+    <div class="calc-header">
+      <mat-icon>speed</mat-icon>
+      <h4>Surface Speed (SFM)</h4>
+    </div>
+    
+    <div class="calc-inputs">
+      <mat-form-field appearance="outline">
+        <mat-label>Diameter (inches)</mat-label>
+        <input matInput type="number" [(ngModel)]="diameter" 
+               (input)="calculateSurfaceSpeed()" step="0.001" min="0">
+        <mat-icon matSuffix>straighten</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>RPM</mat-label>
+        <input matInput type="number" [(ngModel)]="rpm" 
+               (input)="calculateSurfaceSpeed()" step="1" min="0">
+        <mat-icon matSuffix>rotate_right</mat-icon>
+      </mat-form-field>
+    </div>
+
+    <div class="calc-result">
+      <div class="result-value">{{ surfaceSpeed | number:'1.0-2' }}</div>
+      <div class="result-unit">SFM</div>
+      <div class="formula">SFM = (π × D × RPM) ÷ 12</div>
+    </div>
+  </div>
+
+  <!-- Feed Rate Calculator -->
+  <div class="calculator-card">
+    <div class="calc-header">
+      <mat-icon>trending_up</mat-icon>
+      <h4>Feed Rate (IPM)</h4>
+    </div>
+    
+    <div class="calc-inputs">
+      <mat-form-field appearance="outline">
+        <mat-label>RPM</mat-label>
+        <input matInput type="number" [(ngModel)]="feedRpm" 
+               (input)="calculateFeedRate()" step="1" min="0">
+        <mat-icon matSuffix>rotate_right</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Chipload (IPT)</mat-label>
+        <input matInput type="number" [(ngModel)]="chipload" 
+               (input)="calculateFeedRate()" step="0.001" min="0">
+        <mat-icon matSuffix>grain</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Flutes</mat-label>
+        <input matInput type="number" [(ngModel)]="flutes" 
+               (input)="calculateFeedRate()" step="1" min="1" max="12">
+        <mat-icon matSuffix>category</mat-icon>
+      </mat-form-field>
+    </div>
+
+    <div class="calc-result">
+      <div class="result-value">{{ feedRate | number:'1.0-2' }}</div>
+      <div class="result-unit">IPM</div>
+      <div class="formula">IPM = RPM × Chipload × Flutes</div>
+    </div>
+  </div>
+
+  <!-- Material Removal Rate Calculator -->
+  <div class="calculator-card">
+    <div class="calc-header">
+      <mat-icon>layers</mat-icon>
+      <h4>Material Removal Rate</h4>
+    </div>
+    
+    <div class="calc-inputs">
+      <mat-form-field appearance="outline">
+        <mat-label>Axial Depth (inches)</mat-label>
+        <input matInput type="number" [(ngModel)]="axialDepth" 
+               (input)="calculateMaterialRemovalRate()" step="0.001" min="0">
+        <mat-icon matSuffix>height</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Radial Depth (inches)</mat-label>
+        <input matInput type="number" [(ngModel)]="radialDepth" 
+               (input)="calculateMaterialRemovalRate()" step="0.001" min="0">
+        <mat-icon matSuffix>width_wide</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Feed Rate (IPM)</mat-label>
+        <input matInput type="number" [(ngModel)]="mrr_feedRate" 
+               (input)="calculateMaterialRemovalRate()" step="0.1" min="0">
+        <mat-icon matSuffix>trending_up</mat-icon>
+      </mat-form-field>
+    </div>
+
+    <div class="calc-result">
+      <div class="result-value">{{ materialRemovalRate | number:'1.0-3' }}</div>
+      <div class="result-unit">in³/min</div>
+      <div class="formula">MRR = Axial × Radial × Feed</div>
+    </div>
+  </div>
+
+  <!-- Cycle Time Calculator -->
+  <div class="calculator-card">
+    <div class="calc-header">
+      <mat-icon>schedule</mat-icon>
+      <h4>Cycle Time Estimation</h4>
+    </div>
+    
+    <div class="calc-inputs">
+      <mat-form-field appearance="outline">
+        <mat-label>Cut Length (inches)</mat-label>
+        <input matInput type="number" [(ngModel)]="length" 
+               (input)="calculateCycleTime()" step="0.1" min="0">
+        <mat-icon matSuffix>straighten</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Feed Rate (IPM)</mat-label>
+        <input matInput type="number" [(ngModel)]="cycleTime_feedRate" 
+               (input)="calculateCycleTime()" step="0.1" min="0">
+        <mat-icon matSuffix>trending_up</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Rapid Rate (IPM)</mat-label>
+        <input matInput type="number" [(ngModel)]="rapidRate" 
+               (input)="calculateCycleTime()" step="1" min="0">
+        <mat-icon matSuffix>fast_forward</mat-icon>
+      </mat-form-field>
+    </div>
+
+    <div class="calc-result">
+      <div class="result-value">{{ cycleTime | number:'1.0-2' }}</div>
+      <div class="result-unit">minutes</div>
+      <div class="formula">Time = Length ÷ Feed + Rapids</div>
+    </div>
+  </div>
+
+  <!-- Thread Pitch Calculator -->
+  <div class="calculator-card">
+    <div class="calc-header">
+      <mat-icon>settings</mat-icon>
+      <h4>Thread Pitch Conversion</h4>
+    </div>
+    
+    <div class="calc-inputs">
+      <mat-form-field appearance="outline">
+        <mat-label>Threads Per Inch</mat-label>
+        <input matInput type="number" [(ngModel)]="threadsPerInch" 
+               (input)="calculateThreadPitch()" step="0.1" min="0">
+        <mat-icon matSuffix>format_list_numbered</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Metric Pitch (mm)</mat-label>
+        <input matInput type="number" [(ngModel)]="threadPitch_metric" 
+               (input)="calculateThreadPitch()" step="0.1" min="0">
+        <mat-icon matSuffix>straighten</mat-icon>
+      </mat-form-field>
+    </div>
+
+    <div class="calc-result">
+      <div class="result-row">
+        <span class="result-value">{{ threadPitch | number:'1.0-4' }}"</span>
+        <span class="result-label">Imperial Pitch</span>
+      </div>
+      <div class="result-row">
+        <span class="result-value">{{ threads_per_inch | number:'1.0-2' }}</span>
+        <span class="result-label">TPI from Metric</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Taper Calculator -->
+  <div class="calculator-card">
+    <div class="calc-header">
+      <mat-icon>trending_down</mat-icon>
+      <h4>Taper Calculations</h4>
+    </div>
+    
+    <div class="calc-inputs">
+      <mat-form-field appearance="outline">
+        <mat-label>Large Diameter (inches)</mat-label>
+        <input matInput type="number" [(ngModel)]="largeDiameter" 
+               (input)="calculateTaper()" step="0.001" min="0">
+        <mat-icon matSuffix>radio_button_unchecked</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Small Diameter (inches)</mat-label>
+        <input matInput type="number" [(ngModel)]="smallDiameter" 
+               (input)="calculateTaper()" step="0.001" min="0">
+        <mat-icon matSuffix>circle</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Taper Length (inches)</mat-label>
+        <input matInput type="number" [(ngModel)]="taperLength" 
+               (input)="calculateTaper()" step="0.001" min="0">
+        <mat-icon matSuffix>straighten</mat-icon>
+      </mat-form-field>
+    </div>
+
+    <div class="calc-result">
+      <div class="result-row">
+        <span class="result-value">{{ taperAngle | number:'1.0-3' }}°</span>
+        <span class="result-label">Taper Angle</span>
+      </div>
+      <div class="result-row">
+        <span class="result-value">{{ taperPerFoot | number:'1.0-3' }}"</span>
+        <span class="result-label">Taper per Foot</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Torque Calculator -->
+  <div class="calculator-card">
+    <div class="calc-header">
+      <mat-icon>build</mat-icon>
+      <h4>Torque Calculation</h4>
+    </div>
+    
+    <div class="calc-inputs">
+      <mat-form-field appearance="outline">
+        <mat-label>Force (lbs)</mat-label>
+        <input matInput type="number" [(ngModel)]="force" 
+               (input)="calculateTorque()" step="1" min="0">
+        <mat-icon matSuffix>fitness_center</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Lever Arm (inches)</mat-label>
+        <input matInput type="number" [(ngModel)]="leverArm" 
+               (input)="calculateTorque()" step="0.1" min="0">
+        <mat-icon matSuffix>straighten</mat-icon>
+      </mat-form-field>
+    </div>
+
+    <div class="calc-result">
+      <div class="result-value">{{ torque | number:'1.0-2' }}</div>
+      <div class="result-unit">ft-lbs</div>
+      <div class="formula">Torque = Force × Lever Arm</div>
+    </div>
+  </div>
+
+  <!-- Power Calculator -->
+  <div class="calculator-card">
+    <div class="calc-header">
+      <mat-icon>bolt</mat-icon>
+      <h4>Power Required</h4>
+    </div>
+    
+    <div class="calc-inputs">
+      <mat-form-field appearance="outline">
+        <mat-label>Cutting Force (lbs)</mat-label>
+        <input matInput type="number" [(ngModel)]="cuttingForce" 
+               (input)="calculatePower()" step="1" min="0">
+        <mat-icon matSuffix>fitness_center</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Feed Rate (IPM)</mat-label>
+        <input matInput type="number" [(ngModel)]="powerFeedRate" 
+               (input)="calculatePower()" step="0.1" min="0">
+        <mat-icon matSuffix>trending_up</mat-icon>
+      </mat-form-field>
+    </div>
+
+    <div class="calc-result">
+      <div class="result-value">{{ powerRequired | number:'1.0-3' }}</div>
+      <div class="result-unit">HP</div>
+      <div class="formula">HP = (Force × Feed) ÷ 33000</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Reference Section -->
+<div class="reference-section">
+  <div class="reference-cards">
+    
+    <div class="reference-card">
+      <h4>
+        <mat-icon>info</mat-icon>
+        Common Formulas
+      </h4>
+      <div class="formula-list">
+        <div class="formula-item">
+          <strong>Surface Speed:</strong> SFM = (π × D × RPM) ÷ 12
+        </div>
+        <div class="formula-item">
+          <strong>RPM:</strong> RPM = (SFM × 12) ÷ (π × D)
+        </div>
+        <div class="formula-item">
+          <strong>Feed Rate:</strong> IPM = RPM × Chipload × Flutes
+        </div>
+        <div class="formula-item">
+          <strong>Chipload:</strong> IPT = IPM ÷ (RPM × Flutes)
+        </div>
+        <div class="formula-item">
+          <strong>MRR:</strong> in³/min = Axial × Radial × Feed
+        </div>
+      </div>
+    </div>
+
+    <div class="reference-card">
+      <h4>
+        <mat-icon>help_outline</mat-icon>
+        Usage Tips
+      </h4>
+      <div class="tips-list">
+        <div class="tip-item">
+          <strong>Surface Speed:</strong> Calculate cutting speeds for different tool diameters
+        </div>
+        <div class="tip-item">
+          <strong>Feed Rate:</strong> Determine optimal feed based on chipload requirements
+        </div>
+        <div class="tip-item">
+          <strong>MRR:</strong> Estimate material removal for cycle time planning
+        </div>
+        <div class="tip-item">
+          <strong>Cycle Time:</strong> Include rapid moves for accurate time estimates
+        </div>
+        <div class="tip-item">
+          <strong>Thread Conversion:</strong> Convert between imperial and metric threads
+        </div>
+      </div>
+    </div>
+
+    <div class="reference-card">
+      <h4>
+        <mat-icon>warning</mat-icon>
+        Important Notes
+      </h4>
+      <div class="notes-list">
+        <div class="note-item">
+          <strong>Machine Limits:</strong> Always verify calculated values against machine capabilities
+        </div>
+        <div class="note-item">
+          <strong>Tool Limits:</strong> Check manufacturer recommendations for tool speeds and feeds
+        </div>
+        <div class="note-item">
+          <strong>Material Properties:</strong> Adjust calculations based on workpiece material
+        </div>
+        <div class="note-item">
+          <strong>Safety First:</strong> Start with conservative values and increase gradually
+        </div>
+        <div class="note-item">
+          <strong>Validation:</strong> Test calculations on practice material before production runs
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
