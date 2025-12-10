@@ -1,0 +1,232 @@
+<!-- Controls Section -->
+<div class="controls-section">
+  <div class="search-controls">
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-label>Search taps, drills, or description</mat-label>
+      <input matInput [(ngModel)]="searchTerm" (input)="filterData()" placeholder="e.g., 1/4, #7, M6">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="category-field">
+      <mat-label>Filter by Thread Type</mat-label>
+      <mat-select [(value)]="selectedCategory" (selectionChange)="filterData()">
+        <mat-option value="all">All Thread Types</mat-option>
+        <mat-option value="unified">Unified (UNC/UNF)</mat-option>
+        <mat-option value="metric">Metric (ISO)</mat-option>
+        <mat-option value="npt">NPT (Pipe)</mat-option>
+        <mat-option value="sti">STI (Helicoil)</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="exportToCSV()" class="export-btn">
+      <mat-icon>download</mat-icon>
+      Export CSV
+    </button>
+  </div>
+
+  <!-- Quick Info Cards -->
+  <div class="info-cards">
+    <div class="info-card">
+      <mat-icon>info</mat-icon>
+      <div>
+        <strong>Tap Drill Selection</strong>
+        <p>Choose drill size for 75% thread engagement</p>
+      </div>
+    </div>
+    <div class="info-card">
+      <mat-icon>precision_manufacturing</mat-icon>
+      <div>
+        <strong>{{ getTotalCount() }} Sizes Available</strong>
+        <p>Unified, Metric, and NPT thread standards</p>
+      </div>
+    </div>
+    <div class="info-card">
+      <mat-icon>shopping_cart</mat-icon>
+      <div>
+        <strong>Direct Purchase Links</strong>
+        <p>Click buy links for McMaster-Carr ordering</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Tap Drill Table -->
+<div class="table-container">
+  <table mat-table [dataSource]="filteredTapData" class="tap-drill-table" matSort>
+
+    <!-- Category Column -->
+    <ng-container matColumnDef="category">
+      <th mat-header-cell *matHeaderCellDef class="center-align">
+        <mat-icon>category</mat-icon>
+        Thread Type
+      </th>
+      <td mat-cell *matCellDef="let element" class="center-align">
+        <div class="category-badge" [style.background-color]="getCategoryColor(element.category)">
+          <mat-icon>{{ getCategoryIcon(element.category) }}</mat-icon>
+          {{ element.category | titlecase }}
+        </div>
+      </td>
+    </ng-container>
+
+    <!-- Tap Size Column -->
+    <ng-container matColumnDef="tapSize">
+      <th mat-header-cell *matHeaderCellDef class="center-align">
+        <mat-icon>precision_manufacturing</mat-icon>
+        Tap Size
+      </th>
+      <td mat-cell *matCellDef="let element" class="center-align">
+        <div class="tap-size">
+          <strong>{{ element.tapSize }}</strong>
+          <small>{{ getThreadPitch(element) }}</small>
+        </div>
+      </td>
+    </ng-container>
+
+    <!-- Drill Info Column -->
+    <ng-container matColumnDef="drillInfo">
+      <th mat-header-cell *matHeaderCellDef class="center-align">
+        <mat-icon>architecture</mat-icon>
+        Drill Size
+      </th>
+      <td mat-cell *matCellDef="let element" class="center-align">
+        <div class="drill-info">
+          <div class="drill-size">{{ element.drillSize }}</div>
+          <div class="drill-decimal">{{ element.drillDecimal | number:'1.3-3' }}</div>
+        </div>
+      </td>
+    </ng-container>
+
+    <!-- Description Column -->
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef class="center-align">
+        <mat-icon>description</mat-icon>
+        Application
+      </th>
+      <td mat-cell *matCellDef="let element" class="center-align">
+        <div class="description-info">
+          <div class="app-type">{{ element.description }}</div>
+          <div class="thread-percent">{{ element.percentThread }}% Thread</div>
+        </div>
+      </td>
+    </ng-container>
+
+    <!-- Buy Link Column -->
+    <ng-container matColumnDef="buyLink">
+      <th mat-header-cell *matHeaderCellDef class="center-align">
+        <mat-icon>shopping_cart</mat-icon>
+        Purchase
+      </th>
+      <td mat-cell *matCellDef="let element" class="center-align">
+        <button *ngIf="element.buyLink; else noBuyLink" 
+                mat-icon-button 
+                color="primary" 
+                (click)="openBuyLink(element.buyLink!)"
+                matTooltip="Buy drill bit from McMaster-Carr">
+          <mat-icon>open_in_new</mat-icon>
+        </button>
+        <ng-template #noBuyLink>
+          <span class="no-link">N/A</span>
+        </ng-template>
+      </td>
+    </ng-container>
+
+    <!-- Table Header and Rows -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" 
+        [class]="row.category + '-row'"></tr>
+  </table>
+
+  <!-- No Data Message -->
+  <div *ngIf="filteredTapData.length === 0" class="no-data">
+    <mat-icon>search_off</mat-icon>
+    <h3>No results found</h3>
+    <p>Try adjusting your search terms or filter criteria</p>
+  </div>
+</div>
+
+<!-- Summary Stats -->
+<div class="summary-section">
+  <div class="summary-stats">
+    <div class="stat-card">
+      <mat-icon>straighten</mat-icon>
+      <div class="stat-info">
+        <span class="stat-number">{{ getTotalCount() }}</span>
+        <span class="stat-label">Tap Sizes</span>
+      </div>
+    </div>
+    <div class="stat-card">
+      <mat-icon>flag</mat-icon>
+      <div class="stat-info">
+        <span class="stat-number">{{ getUnifiedCount() }}</span>
+        <span class="stat-label">Unified</span>
+      </div>
+    </div>
+    <div class="stat-card">
+      <mat-icon>public</mat-icon>
+      <div class="stat-info">
+        <span class="stat-number">{{ getMetricCount() }}</span>
+        <span class="stat-label">Metric</span>
+      </div>
+    </div>
+    <div class="stat-card">
+      <mat-icon>plumbing</mat-icon>
+      <div class="stat-info">
+        <span class="stat-number">{{ getNptCount() }}</span>
+        <span class="stat-label">NPT</span>
+      </div>
+    </div>
+    <div class="stat-card">
+      <mat-icon>settings</mat-icon>
+      <div class="stat-info">
+        <span class="stat-number">{{ getStiCount() }}</span>
+        <span class="stat-label">STI</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Reference Section -->
+<div class="reference-section">
+  <h3>
+    <mat-icon>school</mat-icon>
+    Quick Reference Guide
+  </h3>
+  <div class="reference-cards">
+    <div class="reference-card">
+      <h4>Thread Engagement</h4>
+      <ul>
+        <li><strong>75%</strong> - Standard for most applications</li>
+        <li><strong>65%</strong> - Minimum for structural loads</li>
+        <li><strong>85%</strong> - Maximum practical engagement</li>
+      </ul>
+    </div>
+    <div class="reference-card">
+      <h4>Thread Types</h4>
+      <ul>
+        <li><strong>UNC</strong> - Unified National Coarse</li>
+        <li><strong>UNF</strong> - Unified National Fine</li>
+        <li><strong>Metric</strong> - ISO standard threads</li>
+        <li><strong>NPT</strong> - National Pipe Thread (tapered)</li>
+        <li><strong>STI</strong> - Screw Thread Insert (Helicoil)</li>
+      </ul>
+    </div>
+    <div class="reference-card">
+      <h4>STI Insert Notes</h4>
+      <ul>
+        <li><strong>100% thread</strong> - Provides full thread strength</li>
+        <li><strong>Repair damaged</strong> - Restores stripped threads</li>
+        <li><strong>Aluminum upgrade</strong> - Adds steel threads to aluminum</li>
+        <li><strong>Installation</strong> - Requires STI tap and installation tool</li>
+      </ul>
+    </div>
+    <div class="reference-card">
+      <h4>Drill Selection Tips</h4>
+      <ul>
+        <li><strong>Harder materials</strong> - Use larger drill (70% thread)</li>
+        <li><strong>Blind holes</strong> - Consider clearance for chips</li>
+        <li><strong>Through holes</strong> - Standard 75% engagement</li>
+        <li><strong>Aluminum</strong> - Can use smaller drill (80% thread)</li>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,71 @@
+<div class="tools-container">
+  <!-- Header -->
+  <div class="header">
+    <h2>
+      <mat-icon>build_circle</mat-icon>
+      CNC Tools & References
+    </h2>
+    <p class="subtitle">Professional tooling references for setup personnel and CNC enthusiasts</p>
+  </div>
+
+  <!-- Tools Tabs -->
+  <mat-tab-group class="tools-tabs" mat-stretch-tabs="false" mat-align-tabs="start">
+    
+    <!-- Tap Drill Chart Tab -->
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon>precision_manufacturing</mat-icon>
+        Tap Drill Chart
+      </ng-template>
+      <div class="tab-content">
+        <app-tap-drill-chart></app-tap-drill-chart>
+      </div>
+    </mat-tab>
+
+    <!-- Speeds & Feeds Tab -->
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon>speed</mat-icon>
+        Speeds & Feeds
+      </ng-template>
+      <div class="tab-content">
+        <div class="coming-soon">
+          <mat-icon>construction</mat-icon>
+          <h3>Coming Soon</h3>
+          <p>Cutting speed and feed rate calculator for various materials and tooling will be available in a future update.</p>
+        </div>
+      </div>
+    </mat-tab>
+
+    <!-- Machining Calculators Tab -->
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon>calculate</mat-icon>
+        Calculators
+      </ng-template>
+      <div class="tab-content">
+        <div class="coming-soon">
+          <mat-icon>calculate</mat-icon>
+          <h3>Coming Soon</h3>
+          <p>Machining calculators for surface footage, chip load, and cycle time optimization.</p>
+        </div>
+      </div>
+    </mat-tab>
+
+    <!-- Material Properties Tab -->
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon>table_chart</mat-icon>
+        Material Charts
+      </ng-template>
+      <div class="tab-content">
+        <div class="coming-soon">
+          <mat-icon>inventory_2</mat-icon>
+          <h3>Coming Soon</h3>
+          <p>Material property charts and machining recommendations for common alloys and materials.</p>
+        </div>
+      </div>
+    </mat-tab>
+
+  </mat-tab-group>
+</div>

@@ -39,6 +39,8 @@ import { PreventiveMaintenanceShowcaseComponent } from '../../components/prevent
 import { InventoryManagementShowcaseComponent } from '../../components/inventory-management-showcase/inventory-management-showcase.component';
 import { QmsShowcaseComponent } from '../../components/qms-showcase/qms-showcase.component';
 import { SafeUrlPipe } from '../../pipes/safe-url.pipe';
+import { ToolsComponent } from '../../components/tools/tools.component';
+import { TapDrillChartComponent } from '../../components/tools/tap-drill-chart/tap-drill-chart.component';
 
 
 
@@ -79,7 +81,9 @@ import { SafeUrlPipe } from '../../pipes/safe-url.pipe';
     PreventiveMaintenanceShowcaseComponent,
     InventoryManagementShowcaseComponent,
     QmsShowcaseComponent,
-    SafeUrlPipe
+    SafeUrlPipe,
+    ToolsComponent,
+    TapDrillChartComponent
   ],
   imports: [
     CommonModule,

@@ -14,6 +14,7 @@ import { TmsShowcaseComponent } from './components/tms-showcase/tms-showcase.com
 import { PreventiveMaintenanceShowcaseComponent } from './components/preventive-maintenance-showcase/preventive-maintenance-showcase.component';
 import { InventoryManagementShowcaseComponent } from './components/inventory-management-showcase/inventory-management-showcase.component';
 import { QmsShowcaseComponent } from './components/qms-showcase/qms-showcase.component';
+import { ToolsComponent } from './components/tools/tools.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'home', pathMatch:'full'},
@@ -33,6 +34,7 @@ const routes: Routes = [
     {path:'contactus',component:ContactComponent},
     {path:'articles',component:ArticlesComponent},
     {path:'privacy',component:PrivacyNoticeComponent},
+    {path:'tools',component:ToolsComponent},
   ]
 },
 // {path:'**',component: PageNotFoundComponent},
