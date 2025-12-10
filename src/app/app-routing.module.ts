@@ -37,6 +37,12 @@ const routes: Routes = [
     {path:'tools',component:ToolsComponent},
   ]
 },
+// Direct tool routes for bookmarkable URLs
+{path:'tools', component:ToolsComponent, pathMatch: 'full'},
+{path:'tools/tap-drill', component:ToolsComponent, pathMatch: 'full', data: {tab: 'tap-drill'}},
+{path:'tools/speeds-feeds', component:ToolsComponent, pathMatch: 'full', data: {tab: 'speeds-feeds'}},
+{path:'tools/calculators', component:ToolsComponent, pathMatch: 'full', data: {tab: 'calculators'}},  
+{path:'tools/material-charts', component:ToolsComponent, pathMatch: 'full', data: {tab: 'material-charts'}},
 // {path:'**',component: PageNotFoundComponent},
 ];
 

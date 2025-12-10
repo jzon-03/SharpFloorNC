@@ -9,7 +9,11 @@
   </div>
 
   <!-- Tools Tabs -->
-  <mat-tab-group class="tools-tabs" mat-stretch-tabs="false" mat-align-tabs="start">
+  <mat-tab-group class="tools-tabs" 
+                 mat-stretch-tabs="false" 
+                 mat-align-tabs="start"
+                 [selectedIndex]="selectedTabIndex"
+                 (selectedTabChange)="onTabChange($event.index)">
     
     <!-- Tap Drill Chart Tab -->
     <mat-tab>
