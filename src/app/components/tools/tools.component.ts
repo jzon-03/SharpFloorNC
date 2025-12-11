@@ -15,14 +15,16 @@ export class ToolsComponent implements OnInit {
     'tap-drill': 0,
     'speeds-feeds': 1,
     'calculators': 2,
-    'material-charts': 3
+    'material-charts': 3,
+    'nc-editor': 4
   };
 
   private indexToTab: string[] = [
     'tap-drill',
     'speeds-feeds', 
     'calculators',
-    'material-charts'
+    'material-charts',
+    'nc-editor'
   ];
 
   constructor(

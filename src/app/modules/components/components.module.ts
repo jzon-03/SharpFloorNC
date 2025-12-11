@@ -45,6 +45,7 @@ import { SpeedsFeedsComponent } from '../../components/tools/speeds-feeds/speeds
 import { CalculatorsComponent } from '../../components/tools/calculators/calculators.component';
 import { MaterialChartsComponent } from '../../components/tools/material-charts/material-charts.component';
 import { FilterPipe } from '../../pipes/filter.pipe';
+import { NcEditorComponent } from '../../components/tools/nc-editor/nc-editor.component';
 
 
 
@@ -91,7 +92,8 @@ import { FilterPipe } from '../../pipes/filter.pipe';
     SpeedsFeedsComponent,
     CalculatorsComponent,
     MaterialChartsComponent,
-    FilterPipe
+    FilterPipe,
+    NcEditorComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,140 @@
+<div class="nc-editor-container">
+  <!-- Header Section -->
+  <div class="editor-header">
+    <h3>
+      <mat-icon>code</mat-icon>
+      NC Code Editor
+    </h3>
+    <p class="editor-subtitle">Write, edit, and validate G-Code programs with syntax highlighting</p>
+  </div>
+
+  <!-- Toolbar -->
+  <div class="editor-toolbar">
+    <div class="toolbar-left">
+      <button mat-raised-button color="primary" (click)="downloadCode()">
+        <mat-icon>download</mat-icon>
+        Download
+      </button>
+      
+      <input type="file" #fileInput (change)="loadFile($event)" accept=".nc,.cnc,.gcode,.txt" style="display: none;">
+      <button mat-raised-button (click)="fileInput.click()">
+        <mat-icon>upload_file</mat-icon>
+        Load File
+      </button>
+      
+      <button mat-raised-button color="warn" (click)="clearEditor()">
+        <mat-icon>clear</mat-icon>
+        Clear
+      </button>
+    </div>
+    
+    <div class="toolbar-right">
+      <mat-form-field appearance="outline" class="sample-select">
+        <mat-label>Load Sample</mat-label>
+        <mat-select (selectionChange)="loadSample($event.value)" placeholder="Select a sample">
+          <mat-option value="">-- Select Sample --</mat-option>
+          <mat-option value="pocket">Pocket Milling</mat-option>
+          <mat-option value="drilling">Drilling Cycle</mat-option>
+          <mat-option value="contour">Contour Milling</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!-- Editor Section -->
+  <div class="editor-section">
+    <mat-card class="editor-card">
+      <div class="editor-wrapper">
+        <!-- Line Numbers -->
+        <div class="line-numbers" #lineNumbers></div>
+        
+        <!-- Code Editor -->
+        <div class="code-editor-container">
+          <textarea
+            #codeEditor
+            class="code-editor"
+            [(ngModel)]="ncCode"
+            (input)="onCodeInput($event)"
+            spellcheck="false"
+            autocomplete="off"
+            autocorrect="off"
+            autocapitalize="off"
+            placeholder="Enter your G-Code here..."></textarea>
+          
+          <!-- Syntax Highlighted Overlay -->
+          <pre class="syntax-highlight" [innerHTML]="highlightedCode"></pre>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+
+  <!-- Code Information Panel -->
+  <div class="info-panel">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon>info</mat-icon>
+          Code Information
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      
+      <div class="code-stats">
+        <div class="stat-item">
+          <span class="stat-label">Lines:</span>
+          <span class="stat-value">{{ ncCode.split('\n').length }}</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Characters:</span>
+          <span class="stat-value">{{ ncCode.length }}</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Size:</span>
+          <span class="stat-value">{{ (ncCode.length / 1024).toFixed(2) }} KB</span>
+        </div>
+      </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon>help_outline</mat-icon>
+          G-Code Reference
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      
+      <div class="gcode-reference">
+        <div class="reference-section">
+          <h4>Common G-Codes</h4>
+          <div class="code-list">
+            <div class="code-item"><span class="code">G0</span> - Rapid Positioning</div>
+            <div class="code-item"><span class="code">G1</span> - Linear Interpolation</div>
+            <div class="code-item"><span class="code">G2</span> - Clockwise Arc</div>
+            <div class="code-item"><span class="code">G3</span> - Counter-clockwise Arc</div>
+            <div class="code-item"><span class="code">G17</span> - XY Plane Selection</div>
+            <div class="code-item"><span class="code">G20</span> - Inch Units</div>
+            <div class="code-item"><span class="code">G21</span> - Metric Units</div>
+            <div class="code-item"><span class="code">G40</span> - Cutter Compensation Off</div>
+            <div class="code-item"><span class="code">G54</span> - Work Coordinate System</div>
+            <div class="code-item"><span class="code">G80</span> - Cancel Canned Cycle</div>
+            <div class="code-item"><span class="code">G81</span> - Drilling Cycle</div>
+            <div class="code-item"><span class="code">G90</span> - Absolute Programming</div>
+            <div class="code-item"><span class="code">G91</span> - Incremental Programming</div>
+          </div>
+        </div>
+        
+        <div class="reference-section">
+          <h4>Common M-Codes</h4>
+          <div class="code-list">
+            <div class="code-item"><span class="code">M3</span> - Spindle On (Clockwise)</div>
+            <div class="code-item"><span class="code">M4</span> - Spindle On (Counter-clockwise)</div>
+            <div class="code-item"><span class="code">M5</span> - Spindle Stop</div>
+            <div class="code-item"><span class="code">M6</span> - Tool Change</div>
+            <div class="code-item"><span class="code">M8</span> - Coolant On</div>
+            <div class="code-item"><span class="code">M9</span> - Coolant Off</div>
+            <div class="code-item"><span class="code">M30</span> - Program End</div>
+          </div>
+        </div>
+      </div>
+    </mat-expansion-panel>
+  </div>
+</div>
