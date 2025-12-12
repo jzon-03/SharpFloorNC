@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import * as Prism from 'prismjs';
 import 'prismjs/components/prism-gcode';
 
@@ -33,10 +34,14 @@ N140 M30`;
   highlightedCode = '';
   currentLine = 1;
 
-  constructor() { }
+  iframeSrc: SafeResourceUrl | null = null;
+  ncviewerUrl = 'https://ncviewer.com';
+
+  constructor(private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
     this.highlightCode();
+    this.loadNcViewerIframe();
   }
 
   ngAfterViewInit(): void {
@@ -169,5 +174,13 @@ N140 M30`;
       };
       reader.readAsText(file);
     }
+  }
+
+  loadNcViewerIframe(): void {
+    this.iframeSrc = this.sanitizer.bypassSecurityTrustResourceUrl(this.ncviewerUrl);
+  }
+
+  openNcViewerInNewTab(): void {
+    window.open(this.ncviewerUrl, '_blank');
   }
 }

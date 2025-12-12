@@ -9,7 +9,7 @@
   </div>
 
   <!-- Toolbar -->
-  <div class="editor-toolbar">
+  <!-- <div class="editor-toolbar">
     <div class="toolbar-left">
       <button mat-raised-button color="primary" (click)="downloadCode()">
         <mat-icon>download</mat-icon>
@@ -39,16 +39,12 @@
         </mat-select>
       </mat-form-field>
     </div>
-  </div>
+  </div> -->
 
-  <!-- Editor Section -->
-  <div class="editor-section">
+  <div class="editor-section" *ngIf="false">
     <mat-card class="editor-card">
       <div class="editor-wrapper">
-        <!-- Line Numbers -->
         <div class="line-numbers" #lineNumbers></div>
-        
-        <!-- Code Editor -->
         <div class="code-editor-container">
           <textarea
             #codeEditor
@@ -60,16 +56,31 @@
             autocorrect="off"
             autocapitalize="off"
             placeholder="Enter your G-Code here..."></textarea>
-          
-          <!-- Syntax Highlighted Overlay -->
           <pre class="syntax-highlight" [innerHTML]="highlightedCode"></pre>
         </div>
       </div>
     </mat-card>
   </div>
 
-  <!-- Code Information Panel -->
-  <div class="info-panel">
+  <!-- Viewer Panel: embedded ncviewer with fallback -->
+  <div class="viewer-panel">
+    <mat-card class="viewer-card">
+      <div class="viewer-toolbar">
+        <button mat-stroked-button (click)="openNcViewerInNewTab()">
+          <mat-icon>open_in_new</mat-icon>
+          Open ncviewer.com
+        </button>
+        <span class="viewer-note">Embedded viewer loads automatically; if blocked, open ncviewer.com.</span>
+      </div>
+
+      <div class="viewer-frame" *ngIf="iframeSrc">
+        <iframe [src]="iframeSrc" frameborder="0" width="100%" height="800"></iframe>
+      </div>
+    </mat-card>
+  </div>
+
+  <!-- Code Information Panel (hidden while prioritizing ncviewer) -->
+  <div class="info-panel" *ngIf="false">
     <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title>
