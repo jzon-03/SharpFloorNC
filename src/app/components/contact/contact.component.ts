@@ -5,6 +5,7 @@ import { ProgressBarMode } from '@angular/material/progress-bar';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MainserviceService } from 'src/app/services/mainservice.service';
 import { environment } from 'src/environments/environment';
+import { SeoService } from 'src/app/services/seo.service';
 
 @Component({
   selector: 'app-contact',
@@ -27,7 +28,8 @@ export class ContactComponent implements OnInit {
   constructor(
     private _fb: FormBuilder,
     private _crud: MainserviceService,
-    private _snackbar: MatSnackBar
+    private _snackbar: MatSnackBar,
+    private seoService: SeoService
   ) {  }
 
   assistList = [
@@ -48,7 +50,12 @@ export class ContactComponent implements OnInit {
   })
 
   ngOnInit(): void {
-
+    this.seoService.updateMetaTags({
+      title: 'Contact Us - Get in Touch with Sharp Floor NC',
+      description: 'Contact Sharp Floor NC for custom manufacturing software solutions. Request a demo, speak with sales, or get customer support for MES, QMS, and inventory management systems.',
+      keywords: 'contact sharp floor nc, manufacturing software demo, software sales, customer support, request demo, get quote',
+      type: 'website'
+    });
   }
 
   onSelectedFile(event: any){

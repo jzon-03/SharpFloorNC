@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SeoService } from 'src/app/services/seo.service';
 
 @Component({
   selector: 'app-quality-management-system',
@@ -6,6 +7,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./quality-management-system.component.css']
 })
 export class QualityManagementSystemComponent {
+
+  constructor(private seoService: SeoService) {}
+
+  ngOnInit(): void {
+    this.seoService.updateMetaTags({
+      title: 'Quality Management System (QMS) - Custom QMS Software',
+      description: 'Custom Quality Management System software for manufacturing. Improve quality control, ensure compliance, enhance traceability, and manage non-conformances with our tailored QMS solutions.',
+      keywords: 'quality management system, QMS software, quality control, compliance management, manufacturing quality, ISO compliance, quality assurance, traceability',
+      type: 'article'
+    });
+  }
 
   listOfBenefits = [
     {

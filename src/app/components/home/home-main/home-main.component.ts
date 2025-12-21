@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SeoService } from 'src/app/services/seo.service';
 
 @Component({
   selector: 'app-home-main',
@@ -6,6 +7,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./home-main.component.css']
 })
 export class HomeMainComponent {
+
+  constructor(private seoService: SeoService) {}
+
+  ngOnInit(): void {
+    this.seoService.updateMetaTags({
+      title: 'Home - Manufacturing Software Solutions',
+      description: 'Optimize your manufacturing processes with industry-leading software solutions. Real-time insights, inventory management, quality control, and IoT integration for digital manufacturing.',
+      keywords: 'manufacturing software, MES, manufacturing execution system, smart manufacturing, IoT manufacturing, digital transformation',
+      type: 'website'
+    });
+  }
 
   homeContent = [
     {

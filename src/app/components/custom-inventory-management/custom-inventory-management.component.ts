@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SeoService } from 'src/app/services/seo.service';
 
 @Component({
   selector: 'app-custom-inventory-management',
@@ -6,6 +7,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./custom-inventory-management.component.css'],
 })
 export class CustomInventoryManagementComponent {
+
+  constructor(private seoService: SeoService) {}
+
+  ngOnInit(): void {
+    this.seoService.updateMetaTags({
+      title: 'Custom Inventory Management - Manufacturing Inventory Software',
+      description: 'Custom inventory management software for manufacturing. Real-time stock tracking, automated reordering, enhanced production planning, and optimal resource allocation.',
+      keywords: 'inventory management, manufacturing inventory, stock control, inventory tracking, warehouse management, material management, inventory optimization',
+      type: 'article'
+    });
+  }
+
   listOfBenefits = [
     {
       title: `1. Improved Inventory Control:`,
