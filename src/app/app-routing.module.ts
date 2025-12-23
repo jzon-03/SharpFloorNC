@@ -17,33 +17,48 @@ import { QmsShowcaseComponent } from './components/qms-showcase/qms-showcase.com
 import { ToolsComponent } from './components/tools/tools.component';
 
 const routes: Routes = [
-  {path:'',redirectTo:'home', pathMatch:'full'},
-  {path:'home',
-  component:HomeComponent,
-  children:[
-    {path:'',component:HomeMainComponent},
-    {path:'contact', redirectTo:'contactus', pathMatch:'prefix'},
-    {path:'about',component:AboutComponent},
-    {path:'custommes',component:CustommesComponent},
-    {path:'custominventory',component:CustomInventoryManagementComponent},
-    {path:'qms',component:QualityManagementSystemComponent},
-    {path:'qms-demo',component:QmsShowcaseComponent},
-    {path:'tms-demo',component:TmsShowcaseComponent},
-    {path:'preventive-maintenance-demo',component:PreventiveMaintenanceShowcaseComponent},
-    {path:'inventory-management-demo',component:InventoryManagementShowcaseComponent},
-    {path:'contactus',component:ContactComponent},
-    {path:'articles',component:ArticlesComponent},
-    {path:'privacy',component:PrivacyNoticeComponent},
-    {path:'tools',component:ToolsComponent},
-  ]
-},
-// Direct tool routes for bookmarkable URLs
-{path:'tools', component:ToolsComponent, pathMatch: 'full'},
-{path:'tools/tap-drill', component:ToolsComponent, pathMatch: 'full', data: {tab: 'tap-drill'}},
-{path:'tools/speeds-feeds', component:ToolsComponent, pathMatch: 'full', data: {tab: 'speeds-feeds'}},
-{path:'tools/calculators', component:ToolsComponent, pathMatch: 'full', data: {tab: 'calculators'}},  
-{path:'tools/material-charts', component:ToolsComponent, pathMatch: 'full', data: {tab: 'material-charts'}},
-// {path:'**',component: PageNotFoundComponent},
+  // Root redirect to home
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
+  
+  // All routes use HomeComponent as layout wrapper
+  {
+    path: '',
+    component: HomeComponent,
+    children: [
+      // Home page
+      {path: 'home', component: HomeMainComponent},
+      
+      // About & Contact
+      {path: 'about', component: AboutComponent},
+      {path: 'contact', redirectTo: 'contactus', pathMatch: 'full'},
+      {path: 'contactus', component: ContactComponent},
+      
+      // Products/Services
+      {path: 'custommes', component: CustommesComponent},
+      {path: 'custominventory', component: CustomInventoryManagementComponent},
+      {path: 'qms', component: QualityManagementSystemComponent},
+      
+      // Demos/Showcases
+      {path: 'qms-demo', component: QmsShowcaseComponent},
+      {path: 'tms-demo', component: TmsShowcaseComponent},
+      {path: 'preventive-maintenance-demo', component: PreventiveMaintenanceShowcaseComponent},
+      {path: 'inventory-management-demo', component: InventoryManagementShowcaseComponent},
+      
+      // Tools
+      {path: 'tools', component: ToolsComponent},
+      {path: 'tools/tap-drill', component: ToolsComponent, data: {tab: 'tap-drill'}},
+      {path: 'tools/speeds-feeds', component: ToolsComponent, data: {tab: 'speeds-feeds'}},
+      {path: 'tools/calculators', component: ToolsComponent, data: {tab: 'calculators'}},
+      {path: 'tools/material-charts', component: ToolsComponent, data: {tab: 'material-charts'}},
+      
+      // Content
+      {path: 'articles', component: ArticlesComponent},
+      {path: 'privacy', component: PrivacyNoticeComponent},
+      
+      // 404 - Keep commented or uncomment when ready
+      // {path: '**', component: PageNotFoundComponent},
+    ]
+  }
 ];
 
 @NgModule({
