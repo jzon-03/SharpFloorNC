@@ -30,6 +30,6 @@ jobs:
         run: npm run build -- --base-href=/
 
       - name: Deploy to GitHub Pages
-        run: npx angular-cli-ghpages --dir=dist/sharp-floor-nc-ui --no-silent --cname=sharpfloornc.com --repo=https://github.com/jzon-03/SharpFloorNC.git
+        run: npx angular-cli-ghpages --dir=dist --no-silent --cname=sharpfloornc.com --repo=https://github.com/jzon-03/SharpFloorNC.git
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
