@@ -3,6 +3,7 @@ import { SeoService } from 'src/app/services/seo.service';
 
 @Component({
   selector: 'app-custommes',
+  standalone: false,
   templateUrl: './custommes.component.html',
   styleUrls: ['./custommes.component.css']
 })

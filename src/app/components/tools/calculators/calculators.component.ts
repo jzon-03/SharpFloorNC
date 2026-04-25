@@ -9,6 +9,7 @@ export interface CalculationResult {
 
 @Component({
   selector: 'app-calculators',
+  standalone: false,
   templateUrl: './calculators.component.html',
   styleUrls: ['./calculators.component.css']
 })

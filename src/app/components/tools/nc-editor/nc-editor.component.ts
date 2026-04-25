@@ -5,6 +5,7 @@ import 'prismjs/components/prism-gcode';
 
 @Component({
   selector: 'app-nc-editor',
+  standalone: false,
   templateUrl: './nc-editor.component.html',
   styleUrls: ['./nc-editor.component.css']
 })

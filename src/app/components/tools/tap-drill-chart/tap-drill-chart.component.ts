@@ -13,6 +13,7 @@ export interface TapDrillData {
 
 @Component({
   selector: 'app-tap-drill-chart',
+  standalone: false,
   templateUrl: './tap-drill-chart.component.html',
   styleUrls: ['./tap-drill-chart.component.css']
 })

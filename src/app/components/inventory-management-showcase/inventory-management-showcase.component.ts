@@ -22,6 +22,7 @@ interface Benefit {
 
 @Component({
   selector: 'app-inventory-management-showcase',
+  standalone: false,
   templateUrl: './inventory-management-showcase.component.html',
   styleUrls: ['./inventory-management-showcase.component.css']
 })

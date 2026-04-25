@@ -3,6 +3,7 @@ import { SeoService } from 'src/app/services/seo.service';
 
 @Component({
   selector: 'app-home-main',
+  standalone: false,
   templateUrl: './home-main.component.html',
   styleUrls: ['./home-main.component.css']
 })

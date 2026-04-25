@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-accountmain',
+  standalone: false,
   templateUrl: './accountmain.component.html',
   styleUrls: ['./accountmain.component.css']
 })

@@ -8,6 +8,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-overcoming-obstacles',
+  standalone: false,
   templateUrl: './overcoming-obstacles.component.html',
   styleUrls: ['./overcoming-obstacles.component.css']
 })

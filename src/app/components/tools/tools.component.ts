@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-tools',
+  standalone: false,
   templateUrl: './tools.component.html',
   styleUrls: ['./tools.component.css']
 })

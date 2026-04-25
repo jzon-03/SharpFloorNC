@@ -35,6 +35,7 @@ export interface CuttingFluid {
 
 @Component({
   selector: 'app-material-charts',
+  standalone: false,
   templateUrl: './material-charts.component.html',
   styleUrls: ['./material-charts.component.css']
 })

@@ -3,6 +3,7 @@ import { SeoService } from 'src/app/services/seo.service';
 
 @Component({
   selector: 'app-custom-inventory-management',
+  standalone: false,
   templateUrl: './custom-inventory-management.component.html',
   styleUrls: ['./custom-inventory-management.component.css'],
 })

@@ -22,6 +22,7 @@ interface Benefit {
 
 @Component({
   selector: 'app-preventive-maintenance-showcase',
+  standalone: false,
   templateUrl: './preventive-maintenance-showcase.component.html',
   styleUrls: ['./preventive-maintenance-showcase.component.css']
 })

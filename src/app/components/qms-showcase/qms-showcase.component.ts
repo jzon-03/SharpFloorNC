@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-qms-showcase',
+  standalone: false,
   templateUrl: './qms-showcase.component.html',
   styleUrls: ['./qms-showcase.component.css']
 })

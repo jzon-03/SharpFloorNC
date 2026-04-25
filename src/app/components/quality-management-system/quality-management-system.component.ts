@@ -3,6 +3,7 @@ import { SeoService } from 'src/app/services/seo.service';
 
 @Component({
   selector: 'app-quality-management-system',
+  standalone: false,
   templateUrl: './quality-management-system.component.html',
   styleUrls: ['./quality-management-system.component.css']
 })

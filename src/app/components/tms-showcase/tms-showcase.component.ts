@@ -22,6 +22,7 @@ interface Benefit {
 
 @Component({
   selector: 'app-tms-showcase',
+  standalone: false,
   templateUrl: './tms-showcase.component.html',
   styleUrls: ['./tms-showcase.component.css']
 })

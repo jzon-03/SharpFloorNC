@@ -33,6 +33,7 @@ export interface CalculationResult {
 
 @Component({
   selector: 'app-speeds-feeds',
+  standalone: false,
   templateUrl: './speeds-feeds.component.html',
   styleUrls: ['./speeds-feeds.component.css']
 })

@@ -8,6 +8,7 @@ import { EmailForm } from '../contact/contact.component';
 
 @Component({
   selector: 'app-your-vision',
+  standalone: false,
   templateUrl: './your-vision.component.html',
   styleUrls: ['./your-vision.component.css']
 })
