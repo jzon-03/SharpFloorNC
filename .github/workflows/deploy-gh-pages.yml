@@ -35,7 +35,7 @@ jobs:
         run: npm run build -- --configuration production --base-href /
 
       - name: SPA fallback
-        run: cp dist/404.html
+        run: cp dist/index.html dist/404.html
 
       - name: Ensure custom domain
         run: echo "www.sharpfloornc.com" > dist/CNAME
